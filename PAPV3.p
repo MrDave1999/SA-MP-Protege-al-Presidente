@@ -1,18 +1,18 @@
-#include <a_samp> 	/* Créditos a SA-MP Team */
-#include <a_zones> 	/* Créditos a Cueball */
-#include <Pawn.CMD> /* Créditos a urShadow */
-#include <sscanf> 	/* Créditos a Y_Less */
+#include <a_samp> 	/* CrÃ©ditos a SA-MP Team */
+#include <a_zones> 	/* CrÃ©ditos a Cueball */
+#include <Pawn.CMD> /* CrÃ©ditos a urShadow */
+#include <sscanf> 	/* CrÃ©ditos a Y_Less */
 
-//Según Y_Less debe ser definido primero la cantidad máxima de jugadores que habrán en tu servidor, antes de incluir cualquier librería YSI.
+//SegÃºn Y_Less debe ser definido primero la cantidad mÃ¡xima de jugadores que habrÃ¡n en tu servidor, antes de incluir cualquier librerÃ­a YSI.
 #undef MAX_PLAYERS
 #define MAX_PLAYERS (30)
 
-#include <YSI\y_ini> 		/* Créditos a Y_Less */
-#include <YSI\y_foreach>	/* Créditos a Y_Less */
-#include <YSI\y_timers>		/* Créditos a Y_Less */
-#include <mSelection> 		/* Créditos a Kye */
+#include <YSI\y_ini> 		/* CrÃ©ditos a Y_Less */
+#include <YSI\y_foreach>	/* CrÃ©ditos a Y_Less */
+#include <YSI\y_timers>		/* CrÃ©ditos a Y_Less */
+#include <mSelection> 		/* CrÃ©ditos a Kye */
 
-#include "library/l_pap" /* Créditos a MrDave */
+#include "library/l_pap" /* CrÃ©ditos a MrDave */
 
 main()
 {
@@ -39,7 +39,7 @@ public OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ)
 
 public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags)
 {
-	if(!(result != -1)) // si el comando no existe, la condición se cumple.
+	if(!(result != -1)) // si el comando no existe, la condiciÃ³n se cumple.
 	{
  		GameTextForPlayer(playerid, "~r~Comando incorrecto~n~~w~Usa /comandos o /cmds", 4000, 3);
 		PlayerPlaySound(playerid, 1140, 0, 0, 0);
@@ -52,7 +52,7 @@ public OnPlayerCommandReceived(playerid, cmd[], params[], flags)
 {
 	if(VIP[playerid][Autotune])
 	{
-	    SendClientMessage(playerid, Rojo, "ERROR: Debes cerrar el diálogo para escribir un comando.");
+	    SendClientMessage(playerid, Rojo, "ERROR: Debes cerrar el diÃ¡logo para escribir un comando.");
 	    return 0;
  	}
 	switch(flags)
@@ -63,7 +63,7 @@ public OnPlayerCommandReceived(playerid, cmd[], params[], flags)
 		{
 		    SendErrorMessageLevel(2);
 		    if(!IsPlayerInAnyVehicle(playerid))
-				return SendClientMessage(playerid, Rojo, "ERROR: Usted debe estar en un vehículo para poder usar este comando."),0;
+				return SendClientMessage(playerid, Rojo, "ERROR: Usted debe estar en un vehÃ­culo para poder usar este comando."),0;
     		if(!(GetPlayerState(playerid) == PLAYER_STATE_DRIVER))
 				return SendClientMessage(playerid, Rojo, "ERROR: Usted debe ser el conductor para poder usar este comando."),0;
 		}
@@ -81,7 +81,7 @@ public OnPlayerCommandReceived(playerid, cmd[], params[], flags)
  		new string[65];
  		new name[24];
  		GetPlayerName(playerid, name, sizeof(name));
-  		format(string, sizeof(string), "* %s(%d) usó el comando /%s", name, playerid, cmd);
+  		format(string, sizeof(string), "* %s(%d) usÃ³ el comando /%s", name, playerid, cmd);
   		foreach(new i : Player)
 	  	{
   			if(!((i != playerid) && (Data[i][Level] >= 3))) continue;
@@ -93,12 +93,12 @@ public OnPlayerCommandReceived(playerid, cmd[], params[], flags)
 
 public OnRconLoginAttempt(ip[], password[], success)
 {
-	if(success != 0) // si el jugador ingresa correctamente la contraseña para iniciar sesión como rcon, la condición se cumple.
+	if(success != 0) // si el jugador ingresa correctamente la contraseÃ±a para iniciar sesiÃ³n como rcon, la condiciÃ³n se cumple.
 	{
 		new ip1[16];
 		foreach(new i : Player)
 		{
-	    	/* Primero se necesita encontrar la id del jugador quién trató iniciar sesión como rcon. */
+	    	/* Primero se necesita encontrar la id del jugador quiÃ©n tratÃ³ iniciar sesiÃ³n como rcon. */
 			GetPlayerIp(i, ip1, sizeof(ip1));
 			if(!(strcmp(ip, ip1, false) == 0))continue;
 			if(!((Data[i][Level] == 5) && (Data[i][Register] == INICIO_SESION)))
@@ -193,7 +193,7 @@ public OnPlayerText(playerid, text[])
 	IsPlayerSpaceText(valuex, text);
 	if(valuex)
 	{
-	    SendClientMessage(playerid, Rojo, "ERROR: Tu mensaje está vacío, debes escribir algo.");
+	    SendClientMessage(playerid, Rojo, "ERROR: Tu mensaje estÃ¡ vacÃ­o, debes escribir algo.");
 	    return 0;
 	}
  	switch(Data[playerid][Level])
@@ -237,9 +237,9 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 			        Carjack[playerid] = true;
 			    	SetPlayerVirtualWorld(playerid, 10);
 			    	TogglePlayerControllable(playerid, false);
-			    	SendClientMessage(playerid, Rojo, "{66FF00}*[Anti-CJ Team]:{FF9900} Quedaste congelado por 5 segundos por tratar de robarle el vehículo a un miembro de tu equipo");
+			    	SendClientMessage(playerid, Rojo, "{66FF00}*[Anti-CJ Team]:{FF9900} Quedaste congelado por 5 segundos por tratar de robarle el vehÃ­culo a un miembro de tu equipo");
 					ShowPlayerDialog(playerid, 5, DIALOG_STYLE_MSGBOX,
-					"<Anti-CJ Team>", "{FFFFFF}Usted tiene una advertencia por intentar robar un vehículo.\nPor lo tanto para la próxima serás expulsado del servidor.\n¡Juegue en equipo por favor!", "Cerrar", "");
+					"<Anti-CJ Team>", "{FFFFFF}Usted tiene una advertencia por intentar robar un vehÃ­culo.\nPor lo tanto para la prÃ³xima serÃ¡s expulsado del servidor.\nÂ¡Juegue en equipo por favor!", "Cerrar", "");
 					defer FreezePlayer(playerid);
 	            	return 1;
 				}
@@ -327,7 +327,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 		for(new i = 0; i < sizeof(AvionHeli); ++i)
 		{
 			if(!(GetVehicleModel(vehicleid) == AvionHeli[i])) continue;
-			SendClientMessage(playerid, -1, "* El Presidente no puede conducir aviones o helicópteros.");
+			SendClientMessage(playerid, -1, "* El Presidente no puede conducir aviones o helicÃ³pteros.");
 			RemovePlayerFromVehicle(playerid);
 			break;
 		}
@@ -378,11 +378,11 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 
 public OnPlayerConnect(playerid)
 {
-	//print("DEBUG: Se ejecutó OnPlayerConnect\n");
+	//print("DEBUG: Se ejecutÃ³ OnPlayerConnect\n");
     SetPlayerColor(playerid, 0xFFFFFFAA);
 	SendDeathMessage(INVALID_PLAYER_ID, playerid, 200);
 	//===========================================================
-	//Definición de variables VIP
+	//DefiniciÃ³n de variables VIP
 	VIP[playerid][Autotune] = false;
 	VIP[playerid][Wheels] = false;
 	VIP[playerid][Hydraulics] = false;
@@ -407,32 +407,32 @@ public OnPlayerConnect(playerid)
 	Data[playerid][IsKillingSpree] = false;//para detectar si un jugador realmente tiene la maxima racha.
 	Data[playerid][ASK] = false;
 	MostrarRachas[playerid] = true;
-	Data[playerid][PM] = true;//si guarda el "true" significa que los mensajes privados están activados.
+	Data[playerid][PM] = true;//si guarda el "true" significa que los mensajes privados estÃ¡n activados.
 	Data[playerid][Warning] = 0;
 	Data[playerid][Teams] = -1;
 	UltimoID_PM[playerid] = INVALID_PLAYER_ID;
 	Data[playerid][TeamPresident] = -1;/* Si guardamos un -1 a en la matriz, significa que no pertenece al equipo del presidente. */
-	Data[playerid][ForcePlayer] = JUGADOR_NO_FORZADO; /* Si guarda el 0, quiere decir que no hemos forzado al jugador para volver a la selección de clases */
+	Data[playerid][ForcePlayer] = JUGADOR_NO_FORZADO; /* Si guarda el 0, quiere decir que no hemos forzado al jugador para volver a la selecciÃ³n de clases */
 	VehiculoID[playerid] = 0;
 	new NamePath3[45];
 	Route(playerid, NamePath3);
 	Data[playerid][TimeRegister] = ((fexist(NamePath3) == 1) ? (0) : (gettime() + (60 * 10)));
 	
-	/* Íconos de San Fierro*/
+	/* Ãconos de San Fierro*/
 	SetPlayerMapIcon(playerid, 0, -2625.7224,210.4586,4.6209, 22, MAPICON_LOCAL);
 	SetPlayerMapIcon(playerid, 1, -2357.4741,1007.8342,50.8984, 22, MAPICON_LOCAL);
 	SetPlayerMapIcon(playerid, 2, -1456.4299,1500.8383,6.9688, 22, MAPICON_LOCAL);
 	SetPlayerMapIcon(playerid, 3, -2111.2688,-444.0200,38.7344, 22, MAPICON_LOCAL);
 	SetPlayerMapIcon(playerid, 4, -1757.7292,962.9088,24.8828, 22, MAPICON_LOCAL);
 	SetPlayerMapIcon(playerid, 5, -1750.7778,962.6926,24.8828, 22, MAPICON_LOCAL);
-	/* Íconos de Las Venturas */
+	/* Ãconos de Las Venturas */
 	SetPlayerMapIcon(playerid, 6, 2637.2034,1128.5149,11.1797, 22, MAPICON_LOCAL);
 	SetPlayerMapIcon(playerid, 7, 2156.9280,943.1653,10.8203, 22, MAPICON_LOCAL);
 	SetPlayerMapIcon(playerid, 8, 2000.4783,1550.1896,13.5995, 22, MAPICON_LOCAL);
 	SetPlayerMapIcon(playerid, 9, 2000.5225,1538.3048,13.5859, 22, MAPICON_LOCAL);
 	SetPlayerMapIcon(playerid, 10, 2536.1555,2083.9502,10.8203, 22, MAPICON_LOCAL);
 	SetPlayerMapIcon(playerid, 11, 2832.6008,2399.5635,11.0625, 22, MAPICON_LOCAL);
-	/* Íconos de Los Santos */
+	/* Ãconos de Los Santos */
 	SetPlayerMapIcon(playerid, 12, 1177.6949,-1323.0242,14.0834, 22, MAPICON_LOCAL);
 	SetPlayerMapIcon(playerid, 13, 1721.5927,-1881.5479,13.5649, 22, MAPICON_LOCAL);
 	SetPlayerMapIcon(playerid, 14, 1704.6733,-1881.6581,13.5691, 22, MAPICON_LOCAL);
@@ -483,9 +483,9 @@ public OnPlayerDisconnect(playerid, reason)
 
 public OnPlayerRequestClass(playerid, classid)
 {
-    SetPlayerWorldBounds(playerid, 20000.0000, -20000.0000, 20000.0000, -20000.0000);//Borra el límite que hayas puesto antes
+    SetPlayerWorldBounds(playerid, 20000.0000, -20000.0000, 20000.0000, -20000.0000);//Borra el lÃ­mite que hayas puesto antes
 	if((Data[playerid][Teams] != PRESIDENT) && (Data[playerid][ForcePlayer] == JUGADOR_MUERTO_FORZADO))
-	//Esto es para cuando el jugador se lo fuerza a ir a la selección de clases y luego muere, entonces la condición se cumplirá.
+	//Esto es para cuando el jugador se lo fuerza a ir a la selecciÃ³n de clases y luego muere, entonces la condiciÃ³n se cumplirÃ¡.
 	{
 		Data[playerid][ForcePlayer] = JUGADOR_NO_FORZADO;
 		if(Espiar[playerid] == RETADOR || Espiar[playerid] == OPONENTE)
@@ -496,7 +496,7 @@ public OnPlayerRequestClass(playerid, classid)
 	}
     if((IsPlayerInClassSelection(playerid) == 0) && (Data[playerid][Teams] == VICEPRESIDENT))
     {
-    //si el jugador anteriormente no estaba en la selección de clase y es el vicepresidente, la condición se cumple.
+    //si el jugador anteriormente no estaba en la selecciÃ³n de clase y es el vicepresidente, la condiciÃ³n se cumple.
 	    GameTextForPlayer(playerid, "~w~EL VICEPRESIDENTE NO PUEDE~n~   ~r~CAMBIARSE DE CLASE", 5000, 3);
 	    SetSpawnInfo(playerid, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		SpawnPlayer(playerid);
@@ -565,7 +565,7 @@ public OnPlayerRequestClass(playerid, classid)
 			ClaseDisponible[playerid] = ((balance != 0) ? (true) : (false));
 			Data[playerid][Teams] = SECURITY;
 		}
-		case 6..9://id clase policía
+		case 6..9://id clase policÃ­a
 		{
 		    balance = TeamBalance(POLI);
 			GameTextForPlayer(playerid, (((!(balance != 1))) ? ("~y~policia~n~~r~disponible") : ("~y~policia~n~~r~no disponible")), 9999999999, 6);
@@ -640,7 +640,7 @@ public OnPlayerRequestSpawn(playerid)
 		if(ClaseDisponible[playerid])
 		{
 		    new str[50];
-		    format(str, sizeof(str), "ERROR: La clase de %s no está disponible.", GetTeamName(playerid));
+		    format(str, sizeof(str), "ERROR: La clase de %s no estÃ¡ disponible.", GetTeamName(playerid));
  			SendClientMessage(playerid, Rojo, str);
 		}
  		return 0;
@@ -709,7 +709,7 @@ public OnPlayerSpawn(playerid)
 					SetPlayerFacingAngle(playerid, 95.2153);
 				}
 		    }
-			SetPlayerWorldBounds(playerid, 2966.18, 642.2831, 2954.502, 548.8602);//Límite para Las Venturas
+			SetPlayerWorldBounds(playerid, 2966.18, 642.2831, 2954.502, 548.8602);//LÃ­mite para Las Venturas
 			if(!(IsMapLoading != false))
 			{
 				for(new i = 0; i <= 4; ++i)
@@ -756,7 +756,7 @@ public OnPlayerSpawn(playerid)
 					SetPlayerFacingAngle(playerid, 183.2550);
 				}
 		    }
-			SetPlayerWorldBounds(playerid, 2977.858, 93.423, -688.9946, -2907.791);//Límite para Los Santos
+			SetPlayerWorldBounds(playerid, 2977.858, 93.423, -688.9946, -2907.791);//LÃ­mite para Los Santos
 			if(!(IsMapLoading != false))
 			{
 				for(new i = 5; i <= 8; ++i)
@@ -803,7 +803,7 @@ public OnPlayerSpawn(playerid)
 					SetPlayerFacingAngle(playerid, 180.8280);
 				}
 		    }
-			SetPlayerWorldBounds(playerid, -934.23, -2977.858, 1669.936, -1097.72);//Límite para San Fierro
+			SetPlayerWorldBounds(playerid, -934.23, -2977.858, 1669.936, -1097.72);//LÃ­mite para San Fierro
 		    if(!(IsMapLoading != false))
 			{
 				for(new i = 9; i <= 12; ++i)
@@ -895,7 +895,7 @@ public OnPlayerSpawn(playerid)
 	SetPlayerVirtualWorld(playerid, 0);
 	SetPlayerInterior(playerid, 0);
 	if((playerid == id_president) && (Data[id_president][Teams] != PRESIDENT))
-	{ //Restricción para evitar algún bug por un presidente que no "existe"
+	{ //RestricciÃ³n para evitar algÃºn bug por un presidente que no "existe"
 	    id_president = INVALID_PLAYER_ID;
 	    stop Timer_President;
 	}
@@ -905,15 +905,15 @@ public OnPlayerSpawn(playerid)
 	{
         TimePositionSuccess[playerid] = gettime() + 5;
 		Data[playerid][SpawnKill] = repeat IsPlayerExitArea(playerid);
-		Data[playerid][LabelASK] = Create3DTextLabel("Bajo protección de spawn", 0xFF00FFFF, 30.0, 40.0, 50.0, 40.0, 0);
+		Data[playerid][LabelASK] = Create3DTextLabel("Bajo protecciÃ³n de spawn", 0xFF00FFFF, 30.0, 40.0, 50.0, 40.0, 0);
 		Attach3DTextLabelToPlayer(Data[playerid][LabelASK], playerid, 0.0, 0.0, 0.7);
 		SetPlayerHealth(playerid, 99999);
 		Data[playerid][ASK] = true;
 	}
 	if(id_president == INVALID_PLAYER_ID)
-		SendClientMessage(playerid, 0x97FF2FFF, "* ¡No hay presidente por el momento! ¡Escriba /rc o /clase para ser el presidente!");
+		SendClientMessage(playerid, 0x97FF2FFF, "* Â¡No hay presidente por el momento! Â¡Escriba /rc o /clase para ser el presidente!");
 	SendClientMessage(playerid, 0x00FF80FF, "* Usa /deber para saber cual es tu objetivo dentro del juego");
-	SendClientMessage(playerid, 0x00FF80FF, "* Además, selecciona tu skin con /cskin");
+	SendClientMessage(playerid, 0x00FF80FF, "* AdemÃ¡s, selecciona tu skin con /cskin");
 	if(VIP[playerid][Vset])
 	{
 	    GivePlayerWeapon(playerid, WEAPON_CHAINSAW, 1);
@@ -924,7 +924,7 @@ public OnPlayerSpawn(playerid)
 
 public OnPlayerDeath(playerid, killerid, reason)
 {
-    SetPlayerWorldBounds(playerid, 20000.0000, -20000.0000, 20000.0000, -20000.0000);//Borra el límite que hayas puesto antes
+    SetPlayerWorldBounds(playerid, 20000.0000, -20000.0000, 20000.0000, -20000.0000);//Borra el lÃ­mite que hayas puesto antes
 	SendDeathMessage(killerid, playerid, reason);
 	++Data[playerid][Deaths];
 	WriteData(playerid, DEATHS);
@@ -991,7 +991,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 			format(str2, sizeof(str2), "~y~%d asesinatos ~w~sin morir", Data[killerid][KillingSpree]);
 			if(MayorRacha > 2)
 				TextDrawDestroy(TextSpree[0]);
-			/* Creación del textdraw */
+			/* CreaciÃ³n del textdraw */
 			TextSpree[0] = TextDrawCreate(Position[len - 3], 417.000000, "mrdave");
 			TextDrawBackgroundColor(TextSpree[0], 255);
 			TextDrawFont(TextSpree[0], 3);
@@ -999,7 +999,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 			TextDrawColor(TextSpree[0], -1);
 			TextDrawSetOutline(TextSpree[0], 1);
 			TextDrawSetProportional(TextSpree[0], 1);
-			/* Alteración de cada cadena */
+			/* AlteraciÃ³n de cada cadena */
 			TextDrawSetString(TextSpree[0], str1);
 			TextDrawSetString(TextSpree[2], str2);
 			/* Mostramos todos los textdraws */
@@ -1018,10 +1018,10 @@ public OnPlayerDeath(playerid, killerid, reason)
 	if(Data[playerid][Teams] == PRESIDENT)
 	{
 	    Data[playerid][Teams] = ((((killerid != INVALID_PLAYER_ID) && (Data[killerid][Teams] == TERRO)) ? (PRESIDENTE_MUERTO_1) : (((killerid != INVALID_PLAYER_ID) && (Data[killerid][Teams] == CIVIL)) ? (PRESIDENTE_MUERTO_2) : (PRESIDENTE_MUERTO_3))));
-        Data[playerid][ForcePlayer] = JUGADOR_SI_FORZADO;//le damos un valor para saber que el presidente estaba en la selección de clases
-		++Data[playerid][PD];//sumamos +1 una muerte al presidente que murió
+        Data[playerid][ForcePlayer] = JUGADOR_SI_FORZADO;//le damos un valor para saber que el presidente estaba en la selecciÃ³n de clases
+		++Data[playerid][PD];//sumamos +1 una muerte al presidente que muriÃ³
 		WriteData(playerid, PRESIDENT_DEATHS);
-		ForceClassSelection(playerid);//forzamos al presidente para ir a la seleción de clases
+		ForceClassSelection(playerid);//forzamos al presidente para ir a la seleciÃ³n de clases
 		SetPlayerMap(((id_vicepresident != INVALID_PLAYER_ID) ? (SI_HAY_PRESIDENTE) : (NO_HAY_PRESIDENTE)));
 	}
 	if((killerid != INVALID_PLAYER_ID) && (Data[killerid][Teams] == PRESIDENT))
@@ -1034,15 +1034,15 @@ public OnPlayerDeath(playerid, killerid, reason)
 
 public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 {
-    // si la id del jugador quién causó el daño llega ser inválida, la condición será verdadera
+    // si la id del jugador quiÃ©n causÃ³ el daÃ±o llega ser invÃ¡lida, la condiciÃ³n serÃ¡ verdadera
 	if(issuerid == INVALID_PLAYER_ID) return 1;
 	if((weaponid >= 0 && weaponid <= 15) || (weaponid >= 22 && weaponid <= 34))
 		PlayerPlaySound(issuerid, 17802, 0.0, 0.0, 0.0);
 
 	if(Data[issuerid][ASK] == true || Data[playerid][ASK] == true)
 	{
-		ShowPlayerDialog(issuerid, 5, DIALOG_STYLE_MSGBOX, "{FF0000}<Advertencia>", ((Data[issuerid][ASK] == true) ? ("{FFFFFF}Aún te encuentras bajo protección de spawn, por esa razón no puedes causar daño a nadie.") : ("{FFFFFF}Ese jugador se encuentra bajo protección de spawn, por esa razón no le puedes causar daño.")), "Cerrar", "");
-  		if(weaponid == WEAPON_VEHICLE) //si el daño es ocasionado con un vehículo
+		ShowPlayerDialog(issuerid, 5, DIALOG_STYLE_MSGBOX, "{FF0000}<Advertencia>", ((Data[issuerid][ASK] == true) ? ("{FFFFFF}AÃºn te encuentras bajo protecciÃ³n de spawn, por esa razÃ³n no puedes causar daÃ±o a nadie.") : ("{FFFFFF}Ese jugador se encuentra bajo protecciÃ³n de spawn, por esa razÃ³n no le puedes causar daÃ±o.")), "Cerrar", "");
+  		if(weaponid == WEAPON_VEHICLE) //si el daÃ±o es ocasionado con un vehÃ­culo
     	{
 			new Float:x;
 			new Float:y;
@@ -1051,32 +1051,32 @@ public OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid, bodypart)
 			SetPlayerPos(playerid, x, y, z+2);
     	}
 	  	if((Data[playerid][ASK] == false) && (Data[issuerid][ASK] == true))
-		// si el jugador quién recibió el daño no llega ser protegido por la protección de spawn y el usuario quién causó el daño llega a estar bajo protección de spawn, la condición se cumple.
+		// si el jugador quiÃ©n recibiÃ³ el daÃ±o no llega ser protegido por la protecciÃ³n de spawn y el usuario quiÃ©n causÃ³ el daÃ±o llega a estar bajo protecciÃ³n de spawn, la condiciÃ³n se cumple.
   		{
   		    if(Data[issuerid][Teams] != CIVIL)
-  		    //Todo el bloque de código de abajo se ejecutará siempre y cuando el jugador quién causó el daño no sea de la clase CIVIL.
+  		    //Todo el bloque de cÃ³digo de abajo se ejecutarÃ¡ siempre y cuando el jugador quiÃ©n causÃ³ el daÃ±o no sea de la clase CIVIL.
   		    {
   		    	if(Data[issuerid][Teams] == Data[playerid][Teams])
-  		    	//Esta condición se la usa para los jugadores que estén en una misma clase, a excepción de los civiles. Ejemplo: (Policía con Policía, Terrorista con Terrorista).
+  		    	//Esta condiciÃ³n se la usa para los jugadores que estÃ©n en una misma clase, a excepciÃ³n de los civiles. Ejemplo: (PolicÃ­a con PolicÃ­a, Terrorista con Terrorista).
   		    	{
   		        	return 1;
   		    	}
   		    	if((Data[issuerid][TeamPresident] == 0) && (Data[playerid][TeamPresident] == 0))
-  		    	//Esta condición se la usa para los jugadores que estén en diferentes clases; pero son aliados. Ejemplo: (Policía con SWAT, Seguridad con SWAT).
+  		    	//Esta condiciÃ³n se la usa para los jugadores que estÃ©n en diferentes clases; pero son aliados. Ejemplo: (PolicÃ­a con SWAT, Seguridad con SWAT).
   		    	{
   		        	return 1;
   		    	}
   		    }
   		    new Float:armour;
   		    GetPlayerArmour(playerid, armour);
-			if(armour > 0) // si el chaleco del jugador quién recibió el daño llega a ser mayor que 0, la condición se cumple.
+			if(armour > 0) // si el chaleco del jugador quiÃ©n recibiÃ³ el daÃ±o llega a ser mayor que 0, la condiciÃ³n se cumple.
 			{
-	    		SetPlayerArmour(playerid, (armour + amount) - amount); //le damos la armadura que tenía el jugador antes que reciba el daño.
+	    		SetPlayerArmour(playerid, (armour + amount) - amount); //le damos la armadura que tenÃ­a el jugador antes que reciba el daÃ±o.
 	    		return 1;
 			}
 			new Float:health;
 			GetPlayerHealth(playerid, health);
-    		SetPlayerHealth(playerid, (health + amount) - amount); //le damos la vida que tenía el jugador antes que reciba el daño.
+    		SetPlayerHealth(playerid, (health + amount) - amount); //le damos la vida que tenÃ­a el jugador antes que reciba el daÃ±o.
   		}
 	}
 	return 1;
@@ -1086,11 +1086,11 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 {
 	if(hittype == BULLET_HIT_TYPE_PLAYER) //si el tipo de golpe es para un jugador
 	{
-	    if(hitid != INVALID_PLAYER_ID) //si la id del jugador es inválido
+	    if(hitid != INVALID_PLAYER_ID) //si la id del jugador es invÃ¡lido
 	    {
 	        if(Data[playerid][ASK] == true || Data[hitid][ASK] == true)
 	        {
-	        	ShowPlayerDialog(playerid, 5, DIALOG_STYLE_MSGBOX, "{FF0000}<Advertencia>", ((Data[playerid][ASK] == true) ? ("{FFFFFF}Aún te encuentras bajo protección de spawn, por esa razón no puedes causar daño a nadie.") : ("{FFFFFF}Ese jugador se encuentra bajo protección de spawn, por esa razón no le puedes causar daño.")), "Cerrar", "");
+	        	ShowPlayerDialog(playerid, 5, DIALOG_STYLE_MSGBOX, "{FF0000}<Advertencia>", ((Data[playerid][ASK] == true) ? ("{FFFFFF}AÃºn te encuentras bajo protecciÃ³n de spawn, por esa razÃ³n no puedes causar daÃ±o a nadie.") : ("{FFFFFF}Ese jugador se encuentra bajo protecciÃ³n de spawn, por esa razÃ³n no le puedes causar daÃ±o.")), "Cerrar", "");
 				return 0;
 			}
 		}
@@ -1169,12 +1169,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	    case DIALOG_TL:
 	    {
 			if(response != 1) return 1;
-			if(listitem == 0) //Si se elige la opción de "Mostrar el tiempo restante en TextDraw"
+			if(listitem == 0) //Si se elige la opciÃ³n de "Mostrar el tiempo restante en TextDraw"
 			{
 			    TimeLeft[playerid][TEXT_DRAW] = ((TimeLeft[playerid][TEXT_DRAW] == true) ? (false) : (true));
 				WriteData(playerid, TL_TEXTDRAW);
 				if((id_president != INVALID_PLAYER_ID) && (TimeLeft[playerid][TEXT_DRAW] == true))
-				//Si hay un presidente y se elige la opción del 'si', la condición se cumple.
+				//Si hay un presidente y se elige la opciÃ³n del 'si', la condiciÃ³n se cumple.
 				{
 					new timeleft[25];
 					format(timeleft, sizeof(timeleft), "~b~%d %s", Minutes, ((Minutes == 1) ? ("minuto restante") : ("minutos restantes")));
@@ -1182,11 +1182,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					TextDrawShowForPlayer(playerid, TextTL);
 				}
 				if((id_president != INVALID_PLAYER_ID) && (TimeLeft[playerid][TEXT_DRAW] == false))
-				//Si hay un presidente y se elige la opción del 'no', la condición se cumple.
+				//Si hay un presidente y se elige la opciÃ³n del 'no', la condiciÃ³n se cumple.
 				    TextDrawHideForPlayer(playerid, TextTL);
 				pc_cmd_tl(playerid);
 			}
-			else //Caso contrario, se cumple la otra opción
+			else //Caso contrario, se cumple la otra opciÃ³n
 			{
 			    TimeLeft[playerid][GAME_TEXT] = ((TimeLeft[playerid][GAME_TEXT] == true) ? (false) : (true));
 			    WriteData(playerid, TL_GAMETEXT);
@@ -1198,28 +1198,28 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		    if(response)
 		    {
 				new cmds_nivel1[1479];
-				strcat(cmds_nivel1, "Lista de comandos para los jugadores que sí están registrados dentro del servidor:\n\n");
-				strcat(cmds_nivel1, "* /siduelo - Te permite activar los duelos, es decir, te podrán enviar una invitación\n");
-				strcat(cmds_nivel1, "* /noduelo - Te permite desactivar los duelos, es decir, no te podrán enviar una invitación\n");
-				strcat(cmds_nivel1, "* /r - Te permite enviar una respuesta rápida a los mensajes privados.\n");
+				strcat(cmds_nivel1, "Lista de comandos para los jugadores que sÃ­ estÃ¡n registrados dentro del servidor:\n\n");
+				strcat(cmds_nivel1, "* /siduelo - Te permite activar los duelos, es decir, te podrÃ¡n enviar una invitaciÃ³n\n");
+				strcat(cmds_nivel1, "* /noduelo - Te permite desactivar los duelos, es decir, no te podrÃ¡n enviar una invitaciÃ³n\n");
+				strcat(cmds_nivel1, "* /r - Te permite enviar una respuesta rÃ¡pida a los mensajes privados.\n");
 				strcat(cmds_nivel1, "* /sipm -  Le permite recibir mensajes privados nuevamente\n");
 				strcat(cmds_nivel1, "* /nopm -  Evita que recibas mensajes privados\n");
-				strcat(cmds_nivel1, "* /nombre - Cambia el nombre de tu cuenta, siempre y cuando el comando esté disponible de usar\n");
-				strcat(cmds_nivel1, "* /cambiarpass -  Le permite cambiar la contraseña de su cuenta\n");
+				strcat(cmds_nivel1, "* /nombre - Cambia el nombre de tu cuenta, siempre y cuando el comando estÃ© disponible de usar\n");
+				strcat(cmds_nivel1, "* /cambiarpass -  Le permite cambiar la contraseÃ±a de su cuenta\n");
 				strcat(cmds_nivel1, "* /tpmcolor -  Cambia el color del teamchat\n");
-				strcat(cmds_nivel1, "* /ej o /eject o presionando Y - Te expulsa de un Rustler o Hydra, esto explota el vehículo;\n");
-				strcat(cmds_nivel1, "  Y te da un paracaídas para aterrizar\n\n");
+				strcat(cmds_nivel1, "* /ej o /eject o presionando Y - Te expulsa de un Rustler o Hydra, esto explota el vehÃ­culo;\n");
+				strcat(cmds_nivel1, "  Y te da un paracaÃ­das para aterrizar\n\n");
 				strcat(cmds_nivel1, "* /cigarro - Te da un cigarro para fumar bien rico\n");
 				strcat(cmds_nivel1, "* /vino - Te da una botella de vino para que la puedas tomar\n");
 				strcat(cmds_nivel1, "* /cerveza - Hace que tu personaje se emborrache\n");
-				strcat(cmds_nivel1, "* /racha o /spree -  Te permite ver tu racha de asesinatos y también de los demás\n");
+				strcat(cmds_nivel1, "* /racha o /spree -  Te permite ver tu racha de asesinatos y tambiÃ©n de los demÃ¡s\n");
 				strcat(cmds_nivel1, "* /showspree -  Muestra la mejor racha de asesinatos en un textdraw\n");
 				strcat(cmds_nivel1, "* /hidespree - Oculta la mejor racha de asesinatos que se muestra en un textdraw\n");
-				strcat(cmds_nivel1, "* /rol - Te permite hablar como terrorista o swat o policía, esto dependerá en que clase estés.\n");
+				strcat(cmds_nivel1, "* /rol - Te permite hablar como terrorista o swat o policÃ­a, esto dependerÃ¡ en que clase estÃ©s.\n");
 				strcat(cmds_nivel1, "* /tl - Te permite mostrar u ocultar el tiempo restante en textdraw o en anuncio\n");
-				strcat(cmds_nivel1, "* /pk -  Elimina a un pasajero seleccionado de su vehículo\n");
-				strcat(cmds_nivel1, "* /pka - Elimina a todos los pasajeros de su vehículo\n");
-    			ShowPlayerDialog(playerid, DIALOG_CMDS_2, DIALOG_STYLE_MSGBOX, "Comandos Nivel 1", cmds_nivel1, "Atrás", "Cerrar");
+				strcat(cmds_nivel1, "* /pk -  Elimina a un pasajero seleccionado de su vehÃ­culo\n");
+				strcat(cmds_nivel1, "* /pka - Elimina a todos los pasajeros de su vehÃ­culo\n");
+    			ShowPlayerDialog(playerid, DIALOG_CMDS_2, DIALOG_STYLE_MSGBOX, "Comandos Nivel 1", cmds_nivel1, "AtrÃ¡s", "Cerrar");
 			}
 			else
 				return 1;
@@ -1275,7 +1275,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						return SetPlayerSelectTeam(playerid);
 					}
 				}
-				/* Se le suma un +1 al parámetro "listitem", porque las id de cada equipo no comienza desde 0. */
+				/* Se le suma un +1 al parÃ¡metro "listitem", porque las id de cada equipo no comienza desde 0. */
 				Data[playerid][TimeSelectTeam] = gettime() + 15;
 				SetPlayerSkinRandom(playerid, listitem);
 				Data[playerid][Teams] = listitem;
@@ -1287,7 +1287,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					format(string, sizeof(string), "* %s es el nuevo VicePresidente.", name);
 					SendClientMessageToAll(Amarillo, string);
 				}
-				SetPlayerWorldBounds(playerid, 20000.0000, -20000.0000, 20000.0000, -20000.0000);//Borra el límite que hayas puesto antes
+				SetPlayerWorldBounds(playerid, 20000.0000, -20000.0000, 20000.0000, -20000.0000);//Borra el lÃ­mite que hayas puesto antes
 				OnPlayerSpawn(playerid);
 			}
 		}
@@ -1363,7 +1363,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
   				new str[56];
   				format(str, sizeof(str), "{FF9900}ID Color primario: %d - ID Color secundario: %d", VIP[playerid][DialogPrimary], listitem);
   				SendClientMessage(playerid, Amarillo, str);
-  				SendClientMessage(playerid, Amarillo, "{FF9900}Nota: {FFFFFF}No todos los vehículos tienen un color secundario.");
+  				SendClientMessage(playerid, Amarillo, "{FF9900}Nota: {FFFFFF}No todos los vehÃ­culos tienen un color secundario.");
 				ChangeVehicleColorEx(GetPlayerVehicleID(playerid), VIP[playerid][DialogPrimary], listitem);
 				PlayerPlaySound(playerid, 1134, 0.0, 0.0, 0.0);
 				VIP[playerid][DialogPrimary] = -1;
@@ -1433,7 +1433,7 @@ public OnGameModeInit()
 	SendRconCommand(map);
 	SendRconCommand("hostname Protege al Presidente");
 	SendRconCommand("weburl facebook.com/groups/ProtegeAlPresidente");
-	SendRconCommand("language Español");
+	SendRconCommand("language EspaÃ±ol");
 	SetGameModeText("Protege al Presidente");
 	//EnableStuntBonusForAll(1);
 	UsePlayerPedAnims();
@@ -1442,7 +1442,7 @@ public OnGameModeInit()
 	/* Gang Zones "Las Venturas" */
 	//Presidente, vicepresidente y seguridad
 	GangZoneCreate(947.3376, 1001.35, 1166.009, 1171.545);
-	//Policía
+	//PolicÃ­a
 	GangZoneCreate(2232.032, 2397.722, 2368.702, 2471.215);
 	//SWAT
 	GangZoneCreate(2263.271, 2340.0857, 2376.511, 2467.347);
@@ -1453,7 +1453,7 @@ public OnGameModeInit()
 	/* Gang Zones "Los Santos" */
 	//Presidente, vicepresidente y seguridad
 	GangZoneCreate(1105.779, -2096.375, 1307.329, -2001.629);
-	//Policía & SWAT
+	//PolicÃ­a & SWAT
 	GangZoneCreate(1535.499, -1741.078, 1626.767, -1606.855);
 	//TERRORISTA
 	GangZoneCreate(1607.753, -1137.074, 1699.021, -1022.589);
@@ -1462,13 +1462,13 @@ public OnGameModeInit()
 	/* Gang Zones "San Fierro" */
 	//Presidente, vicepresidente y seguridad
 	GangZoneCreate(-2699.835, -48.96741, -2603.268, 49.6567);
-	//Policía & SWAT
+	//PolicÃ­a & SWAT
 	GangZoneCreate(-1699.399, 633.5114, -1560.343, 751.8604);
 	//TERRORISTA
 	GangZoneCreate(-2309.704, 515.1625, -2213.136, 578.2819);
 	//CIVILES
 	GangZoneCreate(-2313.566, 69.38152, -2255.626, 235.07);
-	/* Objetos para la selección de clases */
+	/* Objetos para la selecciÃ³n de clases */
 	CreateObject(12990, 4495.664063, -2510.759155, 2.373306, 0.0000, 0.0000, 270.0000);
 	CreateObject(13145, 4589.05, -2580.68, 30.90,   0.00, 0.00, 90.00);
 	/* Pickup de San Fierro */
@@ -1661,7 +1661,7 @@ cmd:musica(playerid, params[])
 	if(!(params[0] != '\0'))
 	{
 	    SendClientMessage(playerid, Rojo, "USO: /musica [URL en .mp3]");
-	    SendClientMessage(playerid, Rojo, "* Puedes entrar a esta página: www.onlinevideoconverter.com para convertir tu música a .mp3");
+	    SendClientMessage(playerid, Rojo, "* Puedes entrar a esta pÃ¡gina: www.onlinevideoconverter.com para convertir tu mÃºsica a .mp3");
 		return 1;
 	}
 	PlayAudioStreamForPlayer(playerid, params);
@@ -1695,7 +1695,7 @@ cmd:tpm(playerid, params[])
 	if(params[0] == '\0')
 	{
 		SendClientMessage(playerid, Rojo, "USO: /tpm [mensaje]");
-		SendClientMessage(playerid, Rojo, "* También puedes hablar con ![texto]");
+		SendClientMessage(playerid, Rojo, "* TambiÃ©n puedes hablar con ![texto]");
 		return 1;
 	}
 	if(AntiSpam(playerid, params)) return 1;
@@ -1733,45 +1733,45 @@ cmd:tpm(playerid, params[])
 cmd:comandos(playerid)
 {
 	new cmds_nivel0[2962];
-	strcat(cmds_nivel0, "Lista de comandos para los jugadores que no están registrados dentro del servidor:\n\n");
-	strcat(cmds_nivel0, "* /duelo - Le permite invitar a un jugador a un duelo 1 contra 1, sólo se puede usar como civil\n");
-	strcat(cmds_nivel0, "* /verduelo - Te permite ver el duelo que está actualmente en progreso\n");
-	strcat(cmds_nivel0, "* /cduelo - Cancela tu invitación que hayas enviado a otro jugador\n");
+	strcat(cmds_nivel0, "Lista de comandos para los jugadores que no estÃ¡n registrados dentro del servidor:\n\n");
+	strcat(cmds_nivel0, "* /duelo - Le permite invitar a un jugador a un duelo 1 contra 1, sÃ³lo se puede usar como civil\n");
+	strcat(cmds_nivel0, "* /verduelo - Te permite ver el duelo que estÃ¡ actualmente en progreso\n");
+	strcat(cmds_nivel0, "* /cduelo - Cancela tu invitaciÃ³n que hayas enviado a otro jugador\n");
 	strcat(cmds_nivel0, "* /sduelo - Te permite salir del duelo\n");
-	strcat(cmds_nivel0, "* /carrera - Te permite crear una carrera, sólo se puede usar como civil\n");
-	strcat(cmds_nivel0, "* /entrar - Te permite unirte a cualquier carrera que se haya creado, sólo se puede usar como civil\n");
+	strcat(cmds_nivel0, "* /carrera - Te permite crear una carrera, sÃ³lo se puede usar como civil\n");
+	strcat(cmds_nivel0, "* /entrar - Te permite unirte a cualquier carrera que se haya creado, sÃ³lo se puede usar como civil\n");
 	strcat(cmds_nivel0, "* /salir - Te permite salir de una carrera\n");
 	strcat(cmds_nivel0, "* /topkills - Te muestra una lista con los 5 primeros jugadores con mejores asesinatos\n");
 	strcat(cmds_nivel0, "* /toptimes - Te muestra una lista con los 5 mejores tiempos que ha sucedido en una carrera\n");
 	strcat(cmds_nivel0, "* /kill o /morir - Mata a tu personaje para que puedas reaparecer\n");
 	strcat(cmds_nivel0, "* /sync -  Refresca tu personaje, principalmente utilizado para eliminar cualquier error\n");
-	strcat(cmds_nivel0, "* /stats o /cuenta -  Le permite ver sus estadísticas actuales del juego y también de los demás\n");
+	strcat(cmds_nivel0, "* /stats o /cuenta -  Le permite ver sus estadÃ­sticas actuales del juego y tambiÃ©n de los demÃ¡s\n");
 	strcat(cmds_nivel0, "* /reglas - Muestra una lista de reglas que debe seguir\n");
-	strcat(cmds_nivel0, "* /niveles - Te dice qué representa cada nivel de jugador\n");
+	strcat(cmds_nivel0, "* /niveles - Te dice quÃ© representa cada nivel de jugador\n");
 	strcat(cmds_nivel0, "* /reportar - Le permite informar a los administradores de cualquier regla que no se haya cumplido\n");
 	strcat(cmds_nivel0, "* /duda - Te permite enviar alguna duda o inquietud que tengas sobre el modo de juego\n");
 	strcat(cmds_nivel0, "* /register - Le permite crear una cuenta en nuestro servidor, debe jugar al menos 10 minutos antes de poder registrarse\n");
-	strcat(cmds_nivel0, "* /creditos - Muestra un diálogo donde te dice quién fue el que creó el modo de juego\n");
+	strcat(cmds_nivel0, "* /creditos - Muestra un diÃ¡logo donde te dice quiÃ©n fue el que creÃ³ el modo de juego\n");
 	strcat(cmds_nivel0, "* /rc o /clase - Le permite cambiar de clase, ya sea para ser Presidente, VicePresidente, etc\n");
-	strcat(cmds_nivel0, "* /cskin - Le permite cambiar su skin a unos pocos seleccionados que son únicos para cada clase\n");
-	strcat(cmds_nivel0, "* /camara - Te da una cámara para tomar fotos\n");
-	strcat(cmds_nivel0, "* /para - Te da un paracaídas gratis\n");
-	strcat(cmds_nivel0, "* /staff o /admins - Te permite ver la lista de administradores actuales que estén en línea\n");
-	strcat(cmds_nivel0, "* /vips - Muestra todos los VIP actuales en línea\n");
-	strcat(cmds_nivel0, "* /deber - Abre un diálogo y te dice cual es tu objetivo principal dentro del juego\n");
+	strcat(cmds_nivel0, "* /cskin - Le permite cambiar su skin a unos pocos seleccionados que son Ãºnicos para cada clase\n");
+	strcat(cmds_nivel0, "* /camara - Te da una cÃ¡mara para tomar fotos\n");
+	strcat(cmds_nivel0, "* /para - Te da un paracaÃ­das gratis\n");
+	strcat(cmds_nivel0, "* /staff o /admins - Te permite ver la lista de administradores actuales que estÃ©n en lÃ­nea\n");
+	strcat(cmds_nivel0, "* /vips - Muestra todos los VIP actuales en lÃ­nea\n");
+	strcat(cmds_nivel0, "* /deber - Abre un diÃ¡logo y te dice cual es tu objetivo principal dentro del juego\n");
 	strcat(cmds_nivel0, "* /pm -  Le permite enviar un mensaje privado a cualquier jugador\n");
 	strcat(cmds_nivel0, "* /holiday o /fiesta -  Te proporciona un rifle, 3 granadas y 500 municiones de spray\n");
 	strcat(cmds_nivel0, "* /mapa - Te dice el mapa actual en el juego\n");
 	strcat(cmds_nivel0, "* /timeleft - Muestra la cantidad de tiempo que queda antes de que el presidente sobreviva\n");
-	strcat(cmds_nivel0, "* /presidente - Te dice quién es el actual presidente\n");
-	strcat(cmds_nivel0, "* /vicepresidente - Te dice quién es el actual vicepresidente\n");
-	strcat(cmds_nivel0, "* /intel - Te muestra al presidente actual y algo de información sobre él\n");
-	strcat(cmds_nivel0, "* /apoyo, /bu o /backup - Envía un mensaje de ayuda a todos los policías y seguridad\n");
-	strcat(cmds_nivel0, "  Este comando sólo es para la clase de presidente\n\n");
+	strcat(cmds_nivel0, "* /presidente - Te dice quiÃ©n es el actual presidente\n");
+	strcat(cmds_nivel0, "* /vicepresidente - Te dice quiÃ©n es el actual vicepresidente\n");
+	strcat(cmds_nivel0, "* /intel - Te muestra al presidente actual y algo de informaciÃ³n sobre Ã©l\n");
+	strcat(cmds_nivel0, "* /apoyo, /bu o /backup - EnvÃ­a un mensaje de ayuda a todos los policÃ­as y seguridad\n");
+	strcat(cmds_nivel0, "  Este comando sÃ³lo es para la clase de presidente\n\n");
 	strcat(cmds_nivel0, "* /gafas - Te pone unas gafas en los ojos de tu skin (piel)\n");
 	strcat(cmds_nivel0, "* /TPM - Te permite enviar un mensaje que solo tu equipo puede ver\n");
-	strcat(cmds_nivel0, "* /musica - Te permite poner una música que sólo la escucharás tú\n");
-	strcat(cmds_nivel0, "* /detener - Te permite detener cualquier tipo de música\n");
+	strcat(cmds_nivel0, "* /musica - Te permite poner una mÃºsica que sÃ³lo la escucharÃ¡s tÃº\n");
+	strcat(cmds_nivel0, "* /detener - Te permite detener cualquier tipo de mÃºsica\n");
 	strcat(cmds_nivel0, "Con ![texto] hablas por el chat de equipo. Ejemplo: !Hola");
 	ShowPlayerDialog(playerid, DIALOG_CMDS_1, DIALOG_STYLE_MSGBOX, "Comandos Nivel 0", cmds_nivel0, ">>", "Cerrar");
 	return 1;
@@ -1784,9 +1784,9 @@ cmd:creditos(playerid)
 	strcat(string, "Scripter: MrDave\n");
 	strcat(string, "Hoster: Marcelo_Reyes\n\n");
 	strcat(string, "- Testers:\n");
-	strcat(string, "José Liscano\n");
+	strcat(string, "JosÃ© Liscano\n");
 	strcat(string, "Zetayder\n");
-	strcat(string, "Agustín Zavala\n");
+	strcat(string, "AgustÃ­n Zavala\n");
 	strcat(string, "William Rojas\n");
 	strcat(string, "Nahuel_Martino\n\n");
 	strcat(string, "- Colaboradores en includes:\n");
@@ -1796,47 +1796,47 @@ cmd:creditos(playerid)
 	strcat(string, "Y_Less (sscanf,YSI)\n");
 	strcat(string, "Kye (mSelection)\n");
 	strcat(string, "Gryphus One (OnPlayerPause)\n");
-    ShowPlayerDialog(playerid, 5, DIALOG_STYLE_MSGBOX, "Créditos", string, "Cerrar", "");
+    ShowPlayerDialog(playerid, 5, DIALOG_STYLE_MSGBOX, "CrÃ©ditos", string, "Cerrar", "");
 	return 1;
 }
 cmd:niveles(playerid)
-	return ShowPlayerDialog(playerid, 5, DIALOG_STYLE_MSGBOX, "Niveles", "Nivel 0: Jugador no registrado\nNivel 1: Jugador registrado\nNivel 2: VIP\nNivel 3: Moderador\nNivel 4: Administrador\nNivel 5: Dueño", "Cerrar", "");
+	return ShowPlayerDialog(playerid, 5, DIALOG_STYLE_MSGBOX, "Niveles", "Nivel 0: Jugador no registrado\nNivel 1: Jugador registrado\nNivel 2: VIP\nNivel 3: Moderador\nNivel 4: Administrador\nNivel 5: DueÃ±o", "Cerrar", "");
 cmd:reglas(playerid)
 {
 	new reglas[1622];
-	strcat(reglas, "Aquí tienes una lista de reglas que debes seguir si quieres jugar aquí. Si te saltas serás sancionado.\n\n");
+	strcat(reglas, "AquÃ­ tienes una lista de reglas que debes seguir si quieres jugar aquÃ­. Si te saltas serÃ¡s sancionado.\n\n");
 	strcat(reglas, "* No usar hacks/cheats\n");
 	strcat(reglas, "* Prohibido jugar con el AFK para evadir kill\n");
 	strcat(reglas, "* Prohibido jugar con el comando /nombre\n");
-	strcat(reglas, "* Prohibido insultar o usar algún vocabulario no adecuado con los demás jugadores\n");
+	strcat(reglas, "* Prohibido insultar o usar algÃºn vocabulario no adecuado con los demÃ¡s jugadores\n");
 	strcat(reglas, "* Prohibido hacer Drive-By shooting usando la Desert Eagle\n");
-	strcat(reglas, "* Sí algún administrador te da alguna advertencia, lo debes tomar de la mejor manera\n");
-	strcat(reglas, "* No disparar a miembros del mismo equipo o a jugadores que estén protegido por la protección spawn\n");
-	strcat(reglas, "* Sí estás protegido bajo la protección de spawn, no puedes causarle daño a ningún jugador\n");
+	strcat(reglas, "* SÃ­ algÃºn administrador te da alguna advertencia, lo debes tomar de la mejor manera\n");
+	strcat(reglas, "* No disparar a miembros del mismo equipo o a jugadores que estÃ©n protegido por la protecciÃ³n spawn\n");
+	strcat(reglas, "* SÃ­ estÃ¡s protegido bajo la protecciÃ³n de spawn, no puedes causarle daÃ±o a ningÃºn jugador\n");
 	strcat(reglas, "* Prohibido forzar el cambio de mapa\n");
 	strcat(reglas, "* No falsificar nicks para suplantar la identidad\n");
 	strcat(reglas, "* No hacer bromas con el comando /q\n");
-	strcat(reglas, "* El equipo que proteja al presidente no debe hacer carjack estando un presidente dentro del vehículo\n");
+	strcat(reglas, "* El equipo que proteja al presidente no debe hacer carjack estando un presidente dentro del vehÃ­culo\n");
 	strcat(reglas, "* No hacer publicidad, no anunciar otros servidores ni saturar el chat\n");
 	strcat(reglas, "* Los civiles no pueden usar Hydras\n");
-	strcat(reglas, "* Los miembros del equipo Seguridad deben cumplir con su deber de acompañar al Presidente\n");
-	strcat(reglas, "* El Presidente no puede estar en la área de spawn para evitar ser matado\n");
-	strcat(reglas, "* El Presidente y el Vice-Presidente no pueden viajar en el mismo vehículo\n");
-	strcat(reglas, "* El Presidente no puede manejar aviones o helicópteros\n");
+	strcat(reglas, "* Los miembros del equipo Seguridad deben cumplir con su deber de acompaÃ±ar al Presidente\n");
+	strcat(reglas, "* El Presidente no puede estar en la Ã¡rea de spawn para evitar ser matado\n");
+	strcat(reglas, "* El Presidente y el Vice-Presidente no pueden viajar en el mismo vehÃ­culo\n");
+	strcat(reglas, "* El Presidente no puede manejar aviones o helicÃ³pteros\n");
 	strcat(reglas, "* No saltarse los 15 minutos de espera para ser presidente o vice-presidente de nuevo\n");
-	//strcat(reglas, "* No está permitido bugs como el c-bug, 2-shooting, entre otros (sólo en duelos se puede hacer)\n");
-	strcat(reglas, "* Está prohibido interrumpir o molestar a jugadores que estén dentro de un duelo");
-	ShowPlayerDialog(playerid, 5, DIALOG_STYLE_MSGBOX, "Protege al Presidente –- Reglas", reglas, "Cerrar", "");
+	//strcat(reglas, "* No estÃ¡ permitido bugs como el c-bug, 2-shooting, entre otros (sÃ³lo en duelos se puede hacer)\n");
+	strcat(reglas, "* EstÃ¡ prohibido interrumpir o molestar a jugadores que estÃ©n dentro de un duelo");
+	ShowPlayerDialog(playerid, 5, DIALOG_STYLE_MSGBOX, "Protege al Presidente Â–- Reglas", reglas, "Cerrar", "");
 	return 1;
 }
 
 cmd:cskin(playerid)
 {
 	if(IsPlayerInAnyVehicle(playerid) == 1)
-		return SendClientMessage(playerid, Rojo, "ERROR: Usted no puede usar este comando estando en un vehículo.");
+		return SendClientMessage(playerid, Rojo, "ERROR: Usted no puede usar este comando estando en un vehÃ­culo.");
 	if(Data[playerid][Teams] == PRESIDENT || Data[playerid][Teams] == VICEPRESIDENT)
 		 return SendClientMessage(playerid, Rojo, "ERROR: El Presidente y VicePresidente no pueden cambiarse de skin.");
-	if(strcmp(GetTeamName(playerid), "Policía", false) == 0)
+	if(strcmp(GetTeamName(playerid), "PolicÃ­a", false) == 0)
 	{
         ShowModelSelectionMenu(playerid, Skin_Class[E_SKINCLASS:(Data[playerid][Teams]-3)], "Policia");
 		return 1;
@@ -1850,7 +1850,7 @@ cmd:reportar(playerid, params[])
 	if(Data[playerid][Level] >= 3)
 		return SendClientMessage(playerid, Rojo, "ERROR: Usted no puede usar este comando.");
 	if(sscanf(params, "ds", params[0], params[1]))
-		return SendClientMessage(playerid, Rojo, "USO: /reportar [playerid] [razón]");
+		return SendClientMessage(playerid, Rojo, "USO: /reportar [playerid] [razÃ³n]");
 	if(!(IsPlayerConnected(params[0]) != 0))
 		return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador no se encuentra conectado.");
 	if(Data[params[0]][Level] >= 3)
@@ -1863,7 +1863,7 @@ cmd:reportar(playerid, params[])
 	new name2[24];
 	GetPlayerName(playerid, name1, sizeof(name1));
 	GetPlayerName(params[0], name2, sizeof(name2));
-	format(string, sizeof(string), "%s(%d) reportó a %s(%d) [Razón: %s].", name1, playerid, name2, params[0], params[1]);
+	format(string, sizeof(string), "%s(%d) reportÃ³ a %s(%d) [RazÃ³n: %s].", name1, playerid, name2, params[0], params[1]);
 	foreach(new i : Player)
 	{
 		if(Data[i][Level] >= 3)
@@ -1921,8 +1921,8 @@ cmd:r(playerid, params[])
 
 /*
 Si la matriz Data[playerid][PM] guarda:
-- El valor de "true" significa que los mensajes privados están activados, esto quiere decir que los jugadores podrán enviar un mensaje privado al jugador que tenga ese valor guardado.
-- El valor de "false" significa que los mensajes privados están desactivados, esto quiere decir que los jugadores no podrán enviar un mensaje privado al jugador que tenga ese valor guardado.
+- El valor de "true" significa que los mensajes privados estÃ¡n activados, esto quiere decir que los jugadores podrÃ¡n enviar un mensaje privado al jugador que tenga ese valor guardado.
+- El valor de "false" significa que los mensajes privados estÃ¡n desactivados, esto quiere decir que los jugadores no podrÃ¡n enviar un mensaje privado al jugador que tenga ese valor guardado.
 */
 
 cmd:sipm(playerid)
@@ -1931,7 +1931,7 @@ cmd:sipm(playerid)
 		return SendClientMessage(playerid, Rojo, "ERROR: Usted ya tiene los mensajes privados activados.");
 	Data[playerid][PM] = true;
 	GameTextForPlayer(playerid, "PM ACTIVADO", 5000, 4);
-	SendClientMessage(playerid, 0xFF8000FF, "PM: Ahora los jugadores podrán enviarte un mensaje privado.");
+	SendClientMessage(playerid, 0xFF8000FF, "PM: Ahora los jugadores podrÃ¡n enviarte un mensaje privado.");
 	PlayerPlaySound(playerid, 1139, 0, 0, 0);
 	return 1;
 }
@@ -1942,7 +1942,7 @@ cmd:nopm(playerid)
 		return SendClientMessage(playerid, Rojo, "ERROR: Usted ya tiene los mensajes privados desactivados");
 	Data[playerid][PM] = false;
 	GameTextForPlayer(playerid, "PM DESACTIVADO", 5000, 4);
-	SendClientMessage(playerid, 0xFF8000FF, "PM: Ahora los jugadores no podrán enviarte un mensaje privado.");
+	SendClientMessage(playerid, 0xFF8000FF, "PM: Ahora los jugadores no podrÃ¡n enviarte un mensaje privado.");
 	PlayerPlaySound(playerid, 1139, 0, 0, 0);
 	return 1;
 }
@@ -1954,12 +1954,12 @@ cmd:duda(playerid, params[])
 	if(isnull(params))
 		return SendClientMessage(playerid, Rojo, "USO: /duda [mensaje]");
 	if(strlen(params) > 40)
-		return SendClientMessage(playerid, Rojo, "ERROR: La cantidad máxima del mensaje es de 40 caracteres.");
+		return SendClientMessage(playerid, Rojo, "ERROR: La cantidad mÃ¡xima del mensaje es de 40 caracteres.");
 	new Count = 0;
 	new string[100];
 	new name[24];
 	GetPlayerName(playerid, name, sizeof(name));
-	format(string, sizeof(string), "%s(%d) tiene una duda: ¿%s?", name, playerid, params);
+	format(string, sizeof(string), "%s(%d) tiene una duda: Â¿%s?", name, playerid, params);
 	foreach(new i : Player)
 	{
 		if(Data[i][Level] >= 3)
@@ -2045,7 +2045,7 @@ cmd:staff(playerid)
 	}
 	format(title, sizeof(title), "STAFF Online: %d", Count);
 	if(Count == 0)
-		return SendClientMessage(playerid, Rojo, "ERROR: No hay ningún miembro del STAFF conectado.");
+		return SendClientMessage(playerid, Rojo, "ERROR: No hay ningÃºn miembro del STAFF conectado.");
 	ShowPlayerDialog(playerid, 5, DIALOG_STYLE_TABLIST_HEADERS, title, len, "Cerrar", "");
 	return 1;
 }
@@ -2055,7 +2055,7 @@ cmd:kill(playerid)
 	if(!(Data[playerid][Teams] != PRESIDENT))
 		return SendClientMessage(playerid, Rojo, "ERROR: El presidente no puede suicidarse.");
 	if(!(IsPlayerInAnyVehicle(playerid) == 0))
-		return SendClientMessage(playerid, Rojo, "ERROR: Usted no puede estar en un vehículo para usar este comando.");
+		return SendClientMessage(playerid, Rojo, "ERROR: Usted no puede estar en un vehÃ­culo para usar este comando.");
 	SetPlayerHealth(playerid, 0.0);
 	return 1;
 }
@@ -2066,7 +2066,7 @@ cmd:para(playerid)
 	return GivePlayerWeapon(playerid, 46, 1);
 cmd:tpmcolor(playerid)
 {
-	ShowPlayerDialog(playerid, DIALOG_TPMCOLOR, DIALOG_STYLE_LIST, "Colores (Team Chat)", "Amarillo\nRojo\nVerde\nNaranja\nAzul\nMorado\nCafé\nRosado\nBlanco\nGris", "Seleccionar", "Cerrar");
+	ShowPlayerDialog(playerid, DIALOG_TPMCOLOR, DIALOG_STYLE_LIST, "Colores (Team Chat)", "Amarillo\nRojo\nVerde\nNaranja\nAzul\nMorado\nCafÃ©\nRosado\nBlanco\nGris", "Seleccionar", "Cerrar");
 	return 1;
 }
 cmd:gafas(playerid)
@@ -2080,7 +2080,7 @@ cmd:gafas(playerid)
 cmd:pk(playerid, params[])
 {
 	if(!(IsPlayerInAnyVehicle(playerid) == 1))
-		return SendClientMessage(playerid, Rojo, "ERROR: Debes estar dentro de un vehículo para usar este comando.");
+		return SendClientMessage(playerid, Rojo, "ERROR: Debes estar dentro de un vehÃ­culo para usar este comando.");
 	if(!(GetPlayerState(playerid) == PLAYER_STATE_DRIVER))
 		return SendClientMessage(playerid, Rojo, "ERROR: Debes ser el conductor para usar este comando.");
 	if(sscanf(params, "d", params[0]))
@@ -2088,11 +2088,11 @@ cmd:pk(playerid, params[])
 	if(!(IsPlayerConnected(params[0]) == 1))
 		return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador no se encuentra conectado.");
 	if(!(GetPlayerVehicleID(playerid) == GetPlayerVehicleID(params[0])))
-		return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador no se encuentra en tu vehículo.");
+		return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador no se encuentra en tu vehÃ­culo.");
 	new str[25 + 24];
 	new name[24];
 	GetPlayerName(playerid, name, sizeof(name));
-	format(str, sizeof(str), "* %s te sacó de su vehículo", name);
+	format(str, sizeof(str), "* %s te sacÃ³ de su vehÃ­culo", name);
 	SendClientMessage(params[0], 0xFF8000FF, str);
 	RemovePlayerFromVehicle(params[0]);
 	return 1;
@@ -2101,7 +2101,7 @@ cmd:pk(playerid, params[])
 cmd:pka(playerid)
 {
 	if(!(IsPlayerInAnyVehicle(playerid) == 1))
-		return SendClientMessage(playerid, Rojo, "ERROR: Debes estar dentro de un vehículo para usar este comando.");
+		return SendClientMessage(playerid, Rojo, "ERROR: Debes estar dentro de un vehÃ­culo para usar este comando.");
 	if(!(GetPlayerState(playerid) == PLAYER_STATE_DRIVER))
 		return SendClientMessage(playerid, Rojo, "ERROR: Debes ser el conductor para usar este comando.");
 	new str[25 + 24];
@@ -2109,7 +2109,7 @@ cmd:pka(playerid)
 	new vehicleid = GetPlayerVehicleID(playerid);
 	new name[24];
 	GetPlayerName(playerid, name, sizeof(name));
-	format(str, sizeof(str), "* %s te sacó de su vehículo", name);
+	format(str, sizeof(str), "* %s te sacÃ³ de su vehÃ­culo", name);
 	foreach(new i : Player)
 	{
 		if(!((vehicleid == GetPlayerVehicleID(i)) && (i != playerid))) continue;
@@ -2118,8 +2118,8 @@ cmd:pka(playerid)
 		RemovePlayerFromVehicle(i);
 	}
 	if(passengers == 0)
-		return SendClientMessage(playerid, Rojo, "ERROR: No hay ningún pasajero en tu vehículo.");
-	format(str, sizeof(str), "* Haz sacado a %d %s de tu vehículo", passengers, ((passengers == 1) ? ("pasajero") : ("pasajeros")));
+		return SendClientMessage(playerid, Rojo, "ERROR: No hay ningÃºn pasajero en tu vehÃ­culo.");
+	format(str, sizeof(str), "* Haz sacado a %d %s de tu vehÃ­culo", passengers, ((passengers == 1) ? ("pasajero") : ("pasajeros")));
 	SendClientMessage(playerid, 0xFF8000FF, str);
 	return 1;
 }
@@ -2127,7 +2127,7 @@ cmd:pka(playerid)
 cmd:apoyo(playerid)
 {
 	if(!(Data[playerid][Teams] == PRESIDENT))
-		return SendClientMessage(playerid, Rojo, "ERROR: Este comando sólo lo puede usar el Presidente.");
+		return SendClientMessage(playerid, Rojo, "ERROR: Este comando sÃ³lo lo puede usar el Presidente.");
 	if(Data[playerid][TiempoApoyo] > gettime())
 		return SendClientMessage(playerid, Rojo, "ERROR: Debes esperar 30 segundos para volver a usar este comando.");
 	new str[70 + MAX_PLAYER_NAME + MAX_ZONE_NAME];
@@ -2156,7 +2156,7 @@ cmd:apoyo(playerid)
 cmd:cigarro(playerid)
 {
 	if(IsPlayerInAnyVehicle(playerid) != 0)
-	    return SendClientMessage(playerid, Rojo, "ERROR: Usted debe bajarse del vehículo para poder fumar un cigarro.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: Usted debe bajarse del vehÃ­culo para poder fumar un cigarro.");
 	if(GetPlayerSpecialAction(playerid) == 21)
 		return SendClientMessage(playerid, Rojo, "ERROR: Ya tienes un cigarro.");
 	SetPlayerSpecialAction(playerid, 21);
@@ -2167,19 +2167,19 @@ cmd:cigarro(playerid)
 cmd:vino(playerid)
 {
 	if(IsPlayerInAnyVehicle(playerid) != 0)
-	    return SendClientMessage(playerid, Rojo, "ERROR: Usted debe bajarse del vehículo para poder tomar un rico vino.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: Usted debe bajarse del vehÃ­culo para poder tomar un rico vino.");
 	if(GetPlayerSpecialAction(playerid) == 22)
 		return SendClientMessage(playerid, Rojo, "ERROR: Ya tienes un vino.");
 	SetPlayerSpecialAction(playerid, 22);
 	SendClientMessage(playerid, 0x97FF2FFF, "* Presiona la tecla 'ENTER' para quitar el vino de tu mano.");
-	SendClientMessage(playerid, 0x97FF2FFF, "* Sí te encuentras borracho, aplasta la tecla 'N' para estar sano de nuevo.");
+	SendClientMessage(playerid, 0x97FF2FFF, "* SÃ­ te encuentras borracho, aplasta la tecla 'N' para estar sano de nuevo.");
 	return 1;
 }
 
 cmd:cerveza(playerid)
 {
 	if(IsPlayerInAnyVehicle(playerid) != 0)
-	    return SendClientMessage(playerid, Rojo, "ERROR: Usted debe bajarse del vehículo para poder tomar una rica cerveza.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: Usted debe bajarse del vehÃ­culo para poder tomar una rica cerveza.");
 	if(GetPlayerSpecialAction(playerid) == 23)
 		return SendClientMessage(playerid, Rojo, "ERROR: Ya tienes una cerveza.");
 	SetPlayerSpecialAction(playerid, 23);
@@ -2192,7 +2192,7 @@ cmd:showspree(playerid)
 	if(MayorRacha < 2)
 		return SendClientMessage(playerid, Rojo, "ERROR: Actualmente no hay rachas tan altas para mostrar.");
 	if(MostrarRachas[playerid] == true)
-	    return SendClientMessage(playerid, Rojo, "ERROR: Ya se mostró la mejor racha de asesinatos en un textdraw.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: Ya se mostrÃ³ la mejor racha de asesinatos en un textdraw.");
 	MostrarRachas[playerid] = true;
 	TextDrawShowForPlayer(playerid, TextSpree[0]);
 	TextDrawShowForPlayer(playerid, TextSpree[1]);
@@ -2205,7 +2205,7 @@ cmd:hidespree(playerid)
 	if(MayorRacha < 2)
 		return SendClientMessage(playerid, Rojo, "ERROR: Actualmente no hay rachas tan altas para ocultar.");
  	if(MostrarRachas[playerid] == false)
-	    return SendClientMessage(playerid, Rojo, "ERROR: Ya se quitó el textdraw donde decía la mejor racha de asesinatos.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: Ya se quitÃ³ el textdraw donde decÃ­a la mejor racha de asesinatos.");
 	MostrarRachas[playerid] = false;
 	TextDrawHideForPlayer(playerid, TextSpree[0]);
 	TextDrawHideForPlayer(playerid, TextSpree[1]);
@@ -2240,7 +2240,7 @@ cmd:presidente(playerid)
 	new str[70 + 24];
 	new name[24];
 	GetPlayerName(id_president, name, sizeof(name));
-	format(str, sizeof(str), "* Presidente actual: %s (ID: %d) | También use /intel para más información.", name, id_president);
+	format(str, sizeof(str), "* Presidente actual: %s (ID: %d) | TambiÃ©n use /intel para mÃ¡s informaciÃ³n.", name, id_president);
 	SendClientMessage(playerid, 0x97FF2FFF, str);
 	return 1;
 }
@@ -2263,7 +2263,7 @@ cmd:intel(playerid)
 		case PLAYER_STATE_PASSENGER:format(str, sizeof(str), "* El Presidente actualmente se encuentra como pasajero en un %s cerca de %s.", NamesVehicles[GetVehicleModel(GetPlayerVehicleID(id_president)) - 400], zone);
 	}
 	SendClientMessage(playerid, 0x97FF2FFF, str);
-	format(str, sizeof(str), "* El tiempo restante antes de que el Presidente %s esté a salvo: %d %s.", name, Minutes, ((Minutes == 1) ? ("minuto") : ("minutos")));
+	format(str, sizeof(str), "* El tiempo restante antes de que el Presidente %s estÃ© a salvo: %d %s.", name, Minutes, ((Minutes == 1) ? ("minuto") : ("minutos")));
 	SendClientMessage(playerid, 0x97FF2FFF, str);
 	return 1;
 }
@@ -2275,7 +2275,7 @@ cmd:timeleft(playerid)
 	new str[80 + 24];
 	new name[24];
 	GetPlayerName(id_president, name, sizeof(name));
-	format(str, sizeof(str), "* Tiempo restante antes de que el Presidente %s (ID: %d) esté a salvo: %d %s.", name, id_president, Minutes, ((Minutes == 1) ? ("minuto") : ("minutos")));
+	format(str, sizeof(str), "* Tiempo restante antes de que el Presidente %s (ID: %d) estÃ© a salvo: %d %s.", name, id_president, Minutes, ((Minutes == 1) ? ("minuto") : ("minutos")));
 	SendClientMessage(playerid, 0x97FF2FFF, str);
 	return 1;
 }
@@ -2284,12 +2284,12 @@ cmd:tl(playerid)
 {
 	new string[103];
 	format(string, sizeof(string),
-	"Opción:\tRespuesta:\n\
+	"OpciÃ³n:\tRespuesta:\n\
 	Mostrar tiempo restante en TextDraw\t%s\n\
 	Mostrar tiempo restante cada 1 minuto\t%s",
 	((TimeLeft[playerid][TEXT_DRAW] == true) ? ("Si") : ("No")),
 	((TimeLeft[playerid][GAME_TEXT] == true) ? ("Si") : ("No")));
-	ShowPlayerDialog(playerid, DIALOG_TL, DIALOG_STYLE_TABLIST_HEADERS, "Configuración", string, "Seleccionar", "Cerrar");
+	ShowPlayerDialog(playerid, DIALOG_TL, DIALOG_STYLE_TABLIST_HEADERS, "ConfiguraciÃ³n", string, "Seleccionar", "Cerrar");
 	PlayerPlaySound(playerid, 1139, 0, 0, 0);
 	return 1;
 }
@@ -2298,7 +2298,7 @@ cmd:ej(playerid)
 {
     new vehicleid = GetPlayerVehicleID(playerid);
 	if(!(vehicleid != 0))
-		return SendClientMessage(playerid, Rojo, "ERROR: Debes estar dentro de un vehículo.");
+		return SendClientMessage(playerid, Rojo, "ERROR: Debes estar dentro de un vehÃ­culo.");
 	if(!(GetPlayerState(playerid) == PLAYER_STATE_DRIVER))
 		return SendClientMessage(playerid, Rojo, "ERROR: Debes ser el conductor para usar este comando.");
 	if(!(GetVehicleModel(vehicleid) == 520 || GetVehicleModel(vehicleid) == 476))
@@ -2316,7 +2316,7 @@ cmd:ej(playerid)
 cmd:sync(playerid)
 {
 	if(IsPlayerInAnyVehicle(playerid) == 1)
-		return SendClientMessage(playerid, Rojo, "ERROR: Usted no puede usar este comando estando en un vehículo.");
+		return SendClientMessage(playerid, Rojo, "ERROR: Usted no puede usar este comando estando en un vehÃ­culo.");
 	if(Data[playerid][Sync] > gettime())
 		return SendClientMessage(playerid, Rojo, "ERROR: Debes esperar 30 segundos para volver a usar este comando.");
 	new Float:X;
@@ -2339,7 +2339,7 @@ cmd:racha(playerid, params[])
 	new spree[44 + 24];
 	if(sscanf(params, "d", userid))
 	{
-		SendClientMessage(playerid, Rojo, "* También puedes usar /racha [playerid]");
+		SendClientMessage(playerid, Rojo, "* TambiÃ©n puedes usar /racha [playerid]");
 		format(spree, sizeof(spree), "* Usted tiene %d %s sin morir.", Data[playerid][KillingSpree], ((Data[playerid][KillingSpree] == 1) ? ("asesinato") : ("asesinatos")));
 		SendClientMessage(playerid, 0x97FF2FFF, spree);
 		return 1;
@@ -2362,7 +2362,7 @@ cmd:holiday(playerid)
 	if(Data[playerid][Teams] == VICEPRESIDENT)
 	    return SendClientMessage(playerid, Rojo, "ERROR: El VicePresidente no puede usar este comando.");
    	if(Data[playerid][ASK] == true)
-		return SendClientMessage(playerid, Rojo, "ERROR: Usted para usar este comando necesita primero salir de su área de spawn.");
+		return SendClientMessage(playerid, Rojo, "ERROR: Usted para usar este comando necesita primero salir de su Ã¡rea de spawn.");
 	if(Data[playerid][TimeHoli] > gettime())
 	    return SetPlayerTimeCMD(playerid, "para volver a usar este comando", Data[playerid][TimeHoli], 3);
 	Data[playerid][TimeHoli] = gettime() + (60 * 3);
@@ -2386,9 +2386,9 @@ cmd:topkills(playerid)
 	for(lugarid = 0; lugarid < sizeof(TopUsers); ++lugarid)
 	{ //Con este ciclo principal encontraremos el id del jugador con mayor asesinato para que ocupe su lugar correspondiente
 	    var = 0;
-	    foreach(new jugadorid : Player)//Con este ciclo anidado 1 se recorre cada id válida de un jugador
+	    foreach(new jugadorid : Player)//Con este ciclo anidado 1 se recorre cada id vÃ¡lida de un jugador
 	    {
-	        for(i = 0; i < sizeof(TopUsers); ++i)//Con este ciclo anidado 2 se verifica si el jugador está en alguna posición de la tabla
+	        for(i = 0; i < sizeof(TopUsers); ++i)//Con este ciclo anidado 2 se verifica si el jugador estÃ¡ en alguna posiciÃ³n de la tabla
 			{
 			    if(TopUsers[i] == jugadorid)
 			    {
@@ -2396,7 +2396,7 @@ cmd:topkills(playerid)
 			        break;
 			    }
 			}
-			if(Tiene_un_lugar == true)//Si el jugador está en algún lugar de la tabla (1 posición, 2 posición, etc)
+			if(Tiene_un_lugar == true)//Si el jugador estÃ¡ en algÃºn lugar de la tabla (1 posiciÃ³n, 2 posiciÃ³n, etc)
 			{
 			    Tiene_un_lugar = false;//Tiene un lugar en la tabla
 			    continue;
@@ -2411,11 +2411,11 @@ cmd:topkills(playerid)
 	Tiene_un_lugar = false;
 	strcat(len, "Lugar\tNombre\tID\tAsesinatos\n");
 	new name[24];
-	for(i = 0; i < sizeof(TopUsers); i++)//Va a mostrar todas las id válidas guardadas en el array "TopUsers"
+	for(i = 0; i < sizeof(TopUsers); i++)//Va a mostrar todas las id vÃ¡lidas guardadas en el array "TopUsers"
 	{
 	    if(TopUsers[i] == INVALID_PLAYER_ID) continue;
 	    for(var = 0; var < sizeof(TopUsers); ++var)
-	    {//Ciclo anidado para detectar si los asesinatos de los jugadores que están en la tabla no son equivalentes
+	    {//Ciclo anidado para detectar si los asesinatos de los jugadores que estÃ¡n en la tabla no son equivalentes
 	        if((TopUsers[var] != INVALID_PLAYER_ID) && (i != var) && (GetPlayerKills(TopUsers[i]) == GetPlayerKills(TopUsers[var])))
 	        {
 				Tiene_un_lugar = true;//Tiene un lugar en la tabla, pero sus asesinatos es igual a otro jugador
@@ -2444,7 +2444,7 @@ cmd:rc(playerid)
 	if(Data[playerid][Teams] == VICEPRESIDENT)
 	    return SendClientMessage(playerid, Rojo, "ERROR: El VicePresidente no puede cambiarse de equipo.");
 	if(!(IsPlayerInAnyVehicle(playerid) == 0))
-		return SendClientMessage(playerid, Rojo, "ERROR: Usted no puede estar en un vehículo para usar este comando.");
+		return SendClientMessage(playerid, Rojo, "ERROR: Usted no puede estar en un vehÃ­culo para usar este comando.");
 	SetPlayerSelectTeam(playerid);
 	return 1;
 }
@@ -2452,11 +2452,11 @@ cmd:rc(playerid)
 cmd:deber(playerid, params[])
 {
 	if(params[0] != '\0' && strcmp(params, "Policia", true) == 0)
-	    params[5] = 'í';
+	    params[5] = 'Ã­';
 	if(params[0] == '\0')
  	{
  	    SetPlayerDuty(playerid, Data[playerid][Teams]);
-	 	SendClientMessage(playerid, Rojo, "* También puedes usar /deber [nombre de la clase]");
+	 	SendClientMessage(playerid, Rojo, "* TambiÃ©n puedes usar /deber [nombre de la clase]");
 	 	SendClientMessage(playerid, Rojo, "* Ejemplo: /deber seguridad");
 	 	return 1;
  	}
@@ -2488,34 +2488,34 @@ cmd:vcmds(playerid)
  	strcat(cmds_vip, "Lista de comandos para los jugadores que sean VIP (Very Important Person)\n\n");
  	strcat(cmds_vip, "* /vcmds - Muestra una lista de comandos VIP\n");
 	strcat(cmds_vip, "* /vskin - Te permite cambiar tu skin mediante una id. Ejemplo: /skin 53\n");
-	strcat(cmds_vip, "* /mskin - Te muestra un menú para seleccionar tu skin mediante modelos\n");
-	strcat(cmds_vip, "* /guardarskin - Guarda tu skin actual para que lo puedas usar después cuando vuelvas a entrar al servidor\n");
+	strcat(cmds_vip, "* /mskin - Te muestra un menÃº para seleccionar tu skin mediante modelos\n");
+	strcat(cmds_vip, "* /guardarskin - Guarda tu skin actual para que lo puedas usar despuÃ©s cuando vuelvas a entrar al servidor\n");
 	strcat(cmds_vip, "* /quitarskin - Restablece la skin guardada, o sea, te la elimina para que puedas guardar otro\n");
-	strcat(cmds_vip, "* /ruedas - Le permite elegir entre múltiples tipos de ruedas para su vehículo\n");
-	strcat(cmds_vip, "* /nitro o /nos o presionando Y - Le da a su vehículo nitro\n");
+	strcat(cmds_vip, "* /ruedas - Le permite elegir entre mÃºltiples tipos de ruedas para su vehÃ­culo\n");
+	strcat(cmds_vip, "* /nitro o /nos o presionando Y - Le da a su vehÃ­culo nitro\n");
 	strcat(cmds_vip, "* /vipme - Te da una motosierra y un francotirador\n");
-	strcat(cmds_vip, "* /armas -  Te muestra un menú donde puedes elegir un armamento como el: Rifle, Sniper, 9mm, motosierra o la katana\n");
+	strcat(cmds_vip, "* /armas -  Te muestra un menÃº donde puedes elegir un armamento como el: Rifle, Sniper, 9mm, motosierra o la katana\n");
 	strcat(cmds_vip, "* /saw - Te da una motosierra\n");
-	strcat(cmds_vip, "* /sniper - Te da un franco tirador con 125 de munición\n");
-	strcat(cmds_vip, "* /rifle - Te da un rifle con 125 munición\n");
+	strcat(cmds_vip, "* /sniper - Te da un franco tirador con 125 de municiÃ³n\n");
+	strcat(cmds_vip, "* /rifle - Te da un rifle con 125 municiÃ³n\n");
 	strcat(cmds_vip, "* /kata - Te da una katana\n");
-	strcat(cmds_vip, "* /colt45 - Te da una pistola 9mm con 500 de munición\n");
+	strcat(cmds_vip, "* /colt45 - Te da una pistola 9mm con 500 de municiÃ³n\n");
 	strcat(cmds_vip, "* /decir -  Muestra un mensaje en amarillo. Ejemplo: /decir MrDave es un novato;\n");
-	strcat(cmds_vip, "  Usted verá en el chat: [VIP] * Quido: MrDave es un novato\n");
-	strcat(cmds_vip, "* /cc - Hace que su vehículo destelle en varios colores\n");
-	strcat(cmds_vip, "* /ccolor -  Le permite cambiar el color de su vehículo\n");
-	strcat(cmds_vip, "* /pinturas -  Le muestra un diálogo donde puede seleccionar de manera cómoda un color primario y secundario para su vehículo\n");
-	strcat(cmds_vip, "* /vset - Lo hace para que spawnees con las armas VIP más populares, la motosierra y el francotirador\n");
-	strcat(cmds_vip, "* /guardarcolor - Guarda un color específico del vehículo, para que cada vez que ingrese a un vehículo tenga ese color\n");
-	strcat(cmds_vip, "* /quitarcolor - Restablece el color del vehículo guardado\n");
-	strcat(cmds_vip, "* /guardarnos - Tu vehículo tiene nitro cada vez que ingresas al vehículo\n");
-	strcat(cmds_vip, "* /hidraulicos o /h - Tu vehículo tiene sistema hidráulico cada vez que ingresas al vehículo\n");
-	strcat(cmds_vip, "* /guardarrueda - Tu vehículo tiene tu juego preferido de ruedas cada vez que ingresas\n");
-	strcat(cmds_vip, "* /quitarrueda - Restablece la elección de tu rueda\n");
-	strcat(cmds_vip, "* /autotune - Alterna las modificaciones de su vehículo (nitro, color, sistema hidráulico y ruedas)\n");
+	strcat(cmds_vip, "  Usted verÃ¡ en el chat: [VIP] * Quido: MrDave es un novato\n");
+	strcat(cmds_vip, "* /cc - Hace que su vehÃ­culo destelle en varios colores\n");
+	strcat(cmds_vip, "* /ccolor -  Le permite cambiar el color de su vehÃ­culo\n");
+	strcat(cmds_vip, "* /pinturas -  Le muestra un diÃ¡logo donde puede seleccionar de manera cÃ³moda un color primario y secundario para su vehÃ­culo\n");
+	strcat(cmds_vip, "* /vset - Lo hace para que spawnees con las armas VIP mÃ¡s populares, la motosierra y el francotirador\n");
+	strcat(cmds_vip, "* /guardarcolor - Guarda un color especÃ­fico del vehÃ­culo, para que cada vez que ingrese a un vehÃ­culo tenga ese color\n");
+	strcat(cmds_vip, "* /quitarcolor - Restablece el color del vehÃ­culo guardado\n");
+	strcat(cmds_vip, "* /guardarnos - Tu vehÃ­culo tiene nitro cada vez que ingresas al vehÃ­culo\n");
+	strcat(cmds_vip, "* /hidraulicos o /h - Tu vehÃ­culo tiene sistema hidrÃ¡ulico cada vez que ingresas al vehÃ­culo\n");
+	strcat(cmds_vip, "* /guardarrueda - Tu vehÃ­culo tiene tu juego preferido de ruedas cada vez que ingresas\n");
+	strcat(cmds_vip, "* /quitarrueda - Restablece la elecciÃ³n de tu rueda\n");
+	strcat(cmds_vip, "* /autotune - Alterna las modificaciones de su vehÃ­culo (nitro, color, sistema hidrÃ¡ulico y ruedas)\n");
  	strcat(cmds_vip, "Con $[texto] hablas por el chat VIP. Ejemplo: $Hola\n");
  	strcat(cmds_vip, "- Beneficio:\n");
-	strcat(cmds_vip, "* Puedes entrar a cualquier clase sin importar que esté disponible o no, con /rc o /clase");
+	strcat(cmds_vip, "* Puedes entrar a cualquier clase sin importar que estÃ© disponible o no, con /rc o /clase");
 	ShowPlayerDialog(playerid, 5, DIALOG_STYLE_MSGBOX, "Comandos Nivel 2 (VIP)", cmds_vip, "Cerrar", "");
 	return 1;
 }
@@ -2525,7 +2525,7 @@ cmd:vskin(playerid, params[])
 	if(sscanf(params, "d", params[0]))
 		return SendClientMessage(playerid, Rojo, "USO: /vskin [skin id]");
 	if(!(params[0] >= 0 && params[0] <= 311))
-		return SendClientMessage(playerid, Rojo, "ERROR: Ingresa un skin válido.");
+		return SendClientMessage(playerid, Rojo, "ERROR: Ingresa un skin vÃ¡lido.");
 	new skin[10];
 	SetPlayerSkin(playerid, params[0]);
 	format(skin, sizeof(skin), "SKIN: %d", params[0]);
@@ -2553,7 +2553,7 @@ cmd:guardarskin(playerid, params[])
 cmd:quitarskin(playerid)
 {
 	if(!(Data[playerid][SkinGuarded] != -1))
-		return SendClientMessage(playerid, Rojo, "ERROR: Usted no tiene guardado ningún skin, usa /guardarskin para almacenar uno en su cuenta.");
+		return SendClientMessage(playerid, Rojo, "ERROR: Usted no tiene guardado ningÃºn skin, usa /guardarskin para almacenar uno en su cuenta.");
 	new str[25];
 	format(str, sizeof(str), "SKIN ID: %d - ELIMINADO", Data[playerid][SkinGuarded]);
 	GameTextForPlayer(playerid, str, 3000, 3);
@@ -2635,7 +2635,7 @@ cmd:cc(playerid)
 	if(VIP[playerid][cc] == true)
 		VIP[playerid][Stop_cc] = repeat Colors_Vehicle(playerid);
 	new str[58];
-	format(str, sizeof(str), "* Para %s la pintura automática usa /cc de nuevo.", ((!VIP[playerid][cc]) ? ("activar") : ("desactivar")));
+	format(str, sizeof(str), "* Para %s la pintura automÃ¡tica usa /cc de nuevo.", ((!VIP[playerid][cc]) ? ("activar") : ("desactivar")));
 	SendClientMessage(playerid, Amarillo, str);
 	PlayerPlaySound(playerid, ((VIP[playerid][cc] == false) ? (1139) : (1134)), 0, 0, 0);
 	if(VIP[playerid][cc] == false)
@@ -2653,7 +2653,7 @@ cmd:ccolor(playerid, params[])
 	static i = -1;
 	static bool:xvalue = false;
 	if(strlen(params) > 7)
-		return SendClientMessage(playerid, Rojo, "ERROR: Sólo se puede ingresar tres dígitos.");
+		return SendClientMessage(playerid, Rojo, "ERROR: SÃ³lo se puede ingresar tres dÃ­gitos.");
 	if(!(params[0] == '\0'))
 	{
 		do
@@ -2666,11 +2666,11 @@ cmd:ccolor(playerid, params[])
 	        	break;
 	    	}
 		}while(i > -1);
-		i = -1; // valor por defecto que tendrá de nuevo i
+		i = -1; // valor por defecto que tendrÃ¡ de nuevo i
 	}
 	if(xvalue == true)
 	{
-		SendClientMessage(playerid, Rojo, "ERROR: Sólo se puede ingresar números.");
+		SendClientMessage(playerid, Rojo, "ERROR: SÃ³lo se puede ingresar nÃºmeros.");
 		xvalue = false;
 		return 1;
 	}
@@ -2695,7 +2695,7 @@ cmd:vset(playerid)
 {
 	VIP[playerid][Vset] = true;
 	pc_cmd_vipme(playerid);
-	SendClientMessage(playerid, Amarillo, "{FF9900}* Ahora cada vez que te maten o te hagan algún respawn, tendrás tus armas favoritas.");
+	SendClientMessage(playerid, Amarillo, "{FF9900}* Ahora cada vez que te maten o te hagan algÃºn respawn, tendrÃ¡s tus armas favoritas.");
 	return 1;
 }
 
@@ -2704,13 +2704,13 @@ cmd:guardarcolor(playerid)
 	if(VIP[playerid][cc])
 	    return SendClientMessage(playerid, Rojo, "ERROR: Usted debe usar de nuevo /cc para poder emplear este comando.");
 	if(VIP[playerid][ColorPrimary] != -1)
-	    return SendClientMessage(playerid, Rojo, "ERROR: Debes eliminar el color actual que habías guardado. Usa /quitarcolor o /resetcolor.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: Debes eliminar el color actual que habÃ­as guardado. Usa /quitarcolor o /resetcolor.");
 	new color1 = 0;
 	new color2 = 0;
 	GetVehicleColor(GetPlayerVehicleID(playerid), color1, color2);
 	VIP[playerid][ColorPrimary] = color1;
 	VIP[playerid][ColorSecundary] = color2;
-	SendClientMessage(playerid, Amarillo, "* El color (primario y secundario) del vehículo fue guardado con éxito.");
+	SendClientMessage(playerid, Amarillo, "* El color (primario y secundario) del vehÃ­culo fue guardado con Ã©xito.");
 	PlayerPlaySound(playerid, 1139, 0.0, 0.0, 0.0);
 	return 1;
 }
@@ -2718,10 +2718,10 @@ cmd:guardarcolor(playerid)
 cmd:quitarcolor(playerid)
 {
 	if(VIP[playerid][ColorPrimary] == -1)
-		return SendClientMessage(playerid, Rojo, "ERROR: Usted no ha guardado ningún color de su vehículo. Usa /guardarcolor o /savecolor.");
+		return SendClientMessage(playerid, Rojo, "ERROR: Usted no ha guardado ningÃºn color de su vehÃ­culo. Usa /guardarcolor o /savecolor.");
 	VIP[playerid][ColorPrimary] = -1;
 	VIP[playerid][ColorSecundary] = -1;
-	SendClientMessage(playerid, Amarillo, "* El color que tenías guardado anteriormente, fue eliminado con éxito.");
+	SendClientMessage(playerid, Amarillo, "* El color que tenÃ­as guardado anteriormente, fue eliminado con Ã©xito.");
 	PlayerPlaySound(playerid, 1139, 0.0, 0.0, 0.0);
 	return 1;
 }
@@ -2729,7 +2729,7 @@ cmd:quitarcolor(playerid)
 cmd:guardarnos(playerid)
 {
 	if(VIP[playerid][Nitro])
-	    return SendClientMessage(playerid, Rojo, "ERROR: Usted ya guardó su nitro.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: Usted ya guardÃ³ su nitro.");
 	new vehicleid = GetPlayerVehicleID(playerid);
 	if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER && vehicleid != 0)
 	{
@@ -2737,14 +2737,14 @@ cmd:guardarnos(playerid)
 		PlayerPlaySound(playerid, 1133, 0.0, 0.0, 0.0);
 	}
 	VIP[playerid][Nitro] = true;
-	SendClientMessage(playerid, Amarillo, "* Ahora cada vez que entres a un vehículo, el nitro se pondrá de manera automática.");
+	SendClientMessage(playerid, Amarillo, "* Ahora cada vez que entres a un vehÃ­culo, el nitro se pondrÃ¡ de manera automÃ¡tica.");
 	return 1;
 }
 
 cmd:hidraulicos(playerid)
 {
 	if(VIP[playerid][Hydraulics])
-	    return SendClientMessage(playerid, Rojo, "ERROR: Usted ya guardó su hidraúlico.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: Usted ya guardÃ³ su hidraÃºlico.");
 	new vehicleid = GetPlayerVehicleID(playerid);
 	if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER && vehicleid != 0)
 	{
@@ -2752,21 +2752,21 @@ cmd:hidraulicos(playerid)
 		PlayerPlaySound(playerid, 1133, 0.0, 0.0, 0.0);
 	}
 	VIP[playerid][Hydraulics] = true;
-	SendClientMessage(playerid, Amarillo, "* Ahora cada vez que entres a un vehículo, tendrás hidraúlicos de manera automática.");
+	SendClientMessage(playerid, Amarillo, "* Ahora cada vez que entres a un vehÃ­culo, tendrÃ¡s hidraÃºlicos de manera automÃ¡tica.");
 	return 1;
 }
 
 cmd:guardarrueda(playerid)
 {
 	if(VIP[playerid][Wheels])
-	    return SendClientMessage(playerid, Rojo, "ERROR: Usted ya guardó una llanta, use /quitarrueda o /resetwheels");
+	    return SendClientMessage(playerid, Rojo, "ERROR: Usted ya guardÃ³ una llanta, use /quitarrueda o /resetwheels");
 	if(VIP[playerid][SaveWheels_ID] == -1)
 	    return SendClientMessage(playerid, Rojo, "ERROR: Utiliza /ruedas para seleccionar una y luego usa /guardarrueda");
 	VIP[playerid][Wheels] = true;
 	new NameWheels[9];
 	new string[59];
 	GetNameWheels(VIP[playerid][SaveWheels_ID], NameWheels);
-	format(string, sizeof(string), "* Ruedas guardadas con éxito (Nombre de la rueda: %s).", NameWheels);
+	format(string, sizeof(string), "* Ruedas guardadas con Ã©xito (Nombre de la rueda: %s).", NameWheels);
 	SendClientMessage(playerid, Amarillo, string);
 	return 1;
 }
@@ -2779,7 +2779,7 @@ cmd:quitarrueda(playerid)
 	new NameWheels[9];
 	new string[75];
 	GetNameWheels(VIP[playerid][SaveWheels_ID], NameWheels);
-	format(string, sizeof(string), "* Haz eliminado las ruedas que tenías antes (Nombre de la rueda: %s).", NameWheels);
+	format(string, sizeof(string), "* Haz eliminado las ruedas que tenÃ­as antes (Nombre de la rueda: %s).", NameWheels);
 	SendClientMessage(playerid, Amarillo, string);
 	VIP[playerid][SaveWheels_ID] = -1;
 	return 1;
@@ -2787,7 +2787,7 @@ cmd:quitarrueda(playerid)
 
 cmd:autotune(playerid)
 {
-	ShowPlayerDialog(playerid, DIALOG_AUTOTUNE, DIALOG_STYLE_LIST, "Auto Ajustes", "Nitro\nColores\nHidraúlicos\nRuedas", "Seleccionar", "Cerrar");
+	ShowPlayerDialog(playerid, DIALOG_AUTOTUNE, DIALOG_STYLE_LIST, "Auto Ajustes", "Nitro\nColores\nHidraÃºlicos\nRuedas", "Seleccionar", "Cerrar");
 	PlayerPlaySound(playerid, 1139, 0, 0, 0);
 	return 1;
 }
@@ -2797,7 +2797,7 @@ cmd:decir(playerid, params[])
 	if(params[0] == '\0')
 	{
 		SendClientMessage(playerid, Rojo, "USO: /decir [mensaje]");
-		SendClientMessage(playerid, Rojo, "* También puedes hablar con &[texto]");
+		SendClientMessage(playerid, Rojo, "* TambiÃ©n puedes hablar con &[texto]");
 		return 1;
 	}
 	if(AntiSpam(playerid, params)) return 1;
@@ -2816,23 +2816,23 @@ cmd:mcmds(playerid)
 	new cmds_mod[1225];
 	strcat(cmds_mod, "Lista de comandos para los jugadores que sean moderadores:\n\n");
 	strcat(cmds_mod, "* /mcmds - Muestra una lista de comandos para jugadores que sean nivel 3\n");
-	strcat(cmds_mod, "* /anuncio - Envía un texto grande a todos los jugadores (estilo: 3)\n");
+	strcat(cmds_mod, "* /anuncio - EnvÃ­a un texto grande a todos los jugadores (estilo: 3)\n");
 	strcat(cmds_mod, "* /darequipo - Cambias a un determinado jugador de una clase\n");
-	strcat(cmds_mod, "* /ir - Te desplaza a la posición de un determinado jugador\n");
-	strcat(cmds_mod, "* /traer - Traes a un especifico jugador a tu ubicación\n");
+	strcat(cmds_mod, "* /ir - Te desplaza a la posiciÃ³n de un determinado jugador\n");
+	strcat(cmds_mod, "* /traer - Traes a un especifico jugador a tu ubicaciÃ³n\n");
 	strcat(cmds_mod, "* /advertir - Proporciona una advertencia a un usuario\n");
 	strcat(cmds_mod, "* /decir - Muestra un mensaje en verde. Ejemplo: /decir MrDave es un novato;\n");
-	strcat(cmds_mod, "  Usted verá en el chat: [Moderador] * Quido: MrDave es un novato\n\n");
-	strcat(cmds_mod, "* /cancion - Pone una música para todos los jugadores\n");
-	strcat(cmds_mod, "* /loquendo - Envía un mensaje a todos los jugadores con la voz de loquendo\n");
+	strcat(cmds_mod, "  Usted verÃ¡ en el chat: [Moderador] * Quido: MrDave es un novato\n\n");
+	strcat(cmds_mod, "* /cancion - Pone una mÃºsica para todos los jugadores\n");
+	strcat(cmds_mod, "* /loquendo - EnvÃ­a un mensaje a todos los jugadores con la voz de loquendo\n");
 	strcat(cmds_mod, "* /expulsar - Bota a un jugador del servidor\n");
-	strcat(cmds_mod, "* /espiar - Establece tu cámara en modo de espectador para espiar a un jugador\n");
+	strcat(cmds_mod, "* /espiar - Establece tu cÃ¡mara en modo de espectador para espiar a un jugador\n");
 	strcat(cmds_mod, "* /noespiar - Elimina el modo de espectador\n");
-	strcat(cmds_mod, "* /jetpack - Proporciona un chaleco que te permitirá volar\n");
+	strcat(cmds_mod, "* /jetpack - Proporciona un chaleco que te permitirÃ¡ volar\n");
 	strcat(cmds_mod, "* /slap - Da una bofetada a un determinado jugador\n");
-	strcat(cmds_mod, "* /respawncar o /rscar - Da un respawn a todos los vehículos de una Ciudad\n");
+	strcat(cmds_mod, "* /respawncar o /rscar - Da un respawn a todos los vehÃ­culos de una Ciudad\n");
 	strcat(cmds_mod, "* /fiestaon - Desactiva/Activa el comando /fiesta\n");
-	strcat(cmds_mod, "* /ip - Mostrará la IP (protocolo internet) de un jugador\n\n");
+	strcat(cmds_mod, "* /ip - MostrarÃ¡ la IP (protocolo internet) de un jugador\n\n");
 	strcat(cmds_mod, "Con #[texto] hablas por el chat admin. Ejemplo: #Hola");
 	ShowPlayerDialog(playerid, 5, DIALOG_STYLE_MSGBOX, "Comandos Nivel 3 (Moderador)", cmds_mod, "Cerrar", "");
 	return 1;
@@ -2844,7 +2844,7 @@ cmd:holidayon(playerid)
 	new str[66 + 24];
 	new name[24];
 	GetPlayerName(playerid, name, sizeof(name));
-	format(str, sizeof(str), "* %s %s el comando /holiday o /fiesta para todos los jugadores", name, ((HolidayOn == true) ? ("activó") : ("desactivó")));
+	format(str, sizeof(str), "* %s %s el comando /holiday o /fiesta para todos los jugadores", name, ((HolidayOn == true) ? ("activÃ³") : ("desactivÃ³")));
 	SendClientMessageToAll(Amarillo, str);
 	if(HolidayOn == true)
 		SendClientMessageToAll(Amarillo, "* Use /holiday o /fiesta para poder obtener un rifle + 3 granadas + un spray");
@@ -2870,9 +2870,9 @@ cmd:slap(playerid, params[])
 	if(!(IsPlayerConnected(params[0]) == 1))
 		return SendClientMessage(playerid,Rojo,"ERROR: Ese jugador no se encuentra conectado.");
 	if(params[0] == playerid)
- 		return SendClientMessage(playerid,Rojo,"ERROR: El ID ingresado eres tù.");
+ 		return SendClientMessage(playerid,Rojo,"ERROR: El ID ingresado eres tÃ¹.");
   	if(IsPlayerInClassSelection(params[0]) != 0)
-	    return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador se encuentra en la selección de clases.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador se encuentra en la selecciÃ³n de clases.");
 	new Float:X;
 	new Float:Y;
 	new Float:Z;
@@ -2884,7 +2884,7 @@ cmd:slap(playerid, params[])
 cmd:jetpack(playerid)
 {
 	if(!(IsPlayerInAnyVehicle(playerid) == 0))
-		return SendClientMessage(playerid, Rojo, "ERROR: Debes bajarte del vehículo para usar un jetpack.");
+		return SendClientMessage(playerid, Rojo, "ERROR: Debes bajarte del vehÃ­culo para usar un jetpack.");
 	SetPlayerSpecialAction(playerid, 2);
 	GameTextForPlayer(playerid, "JETPACK", 5000, 4);
 	PlayerPlaySound(playerid,1083,0.0,0.0,0.0);
@@ -2896,7 +2896,7 @@ cmd:expulsar(playerid, params[])
 	if(sscanf(params, "ds", params[0], params[1]))
 		return SendClientMessage(playerid, Rojo, "USO: /expulsar [playerid] [reason]");
 	if(IsPlayerConnected(params[0]) != 1)
-	    return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador no está conectado.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador no estÃ¡ conectado.");
 	if(params[0] == playerid)
 		return SendClientMessage(playerid, Rojo, "ERROR: Usted no se puede autoexpulsar.");
 	if(Data[params[0]][Level] == 3)
@@ -2904,14 +2904,14 @@ cmd:expulsar(playerid, params[])
 	if(Data[params[0]][Level] == 4)
 	    return SendClientMessage(playerid, Rojo, "ERROR: No puedes expulsar a un administrador.");
 	if(Data[params[0]][Level] == 5)
-	    return SendClientMessage(playerid, Rojo, "ERROR: No puedes expulsar a un dueño.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: No puedes expulsar a un dueÃ±o.");
     Kicked = true;
 	new string[31+(3*24)];
 	new name1[24];
 	new name2[24];
 	GetPlayerName(playerid, name1, sizeof(name1));
 	GetPlayerName(params[0], name2, sizeof(name2));
-	format(string, sizeof(string), "%s expulsó a %s del servidor [Razón: %s]", name1, name2, params[1]);
+	format(string, sizeof(string), "%s expulsÃ³ a %s del servidor [RazÃ³n: %s]", name1, name2, params[1]);
 	SendClientMessageToAll(Rojo, string);
 	SendMessage(params[0], params[1]);
 	return 1;
@@ -2922,7 +2922,7 @@ cmd:advertir(playerid, params[])
 	if(sscanf(params, "ds", params[0], params[1]))
 		return SendClientMessage(playerid, Rojo, "USO: /advertir [playerid] [reason]");
  	if(IsPlayerConnected(params[0]) != 1)
-	    return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador no está conectado.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador no estÃ¡ conectado.");
  	if(params[0] == playerid)
 		return SendClientMessage(playerid, Rojo, "ERROR: Usted mismo no se puede dar una advertencia.");
 	if(Data[params[0]][Level] == 3)
@@ -2930,13 +2930,13 @@ cmd:advertir(playerid, params[])
 	if(Data[params[0]][Level] == 4)
 	    return SendClientMessage(playerid, Rojo, "ERROR: No puedes darle una advertencia a un administrador.");
 	if(Data[params[0]][Level] == 5)
-	    return SendClientMessage(playerid, Rojo, "ERROR: No puedes darle una advertencia a un dueño.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: No puedes darle una advertencia a un dueÃ±o.");
 	new string[128];
 	new name1[24];
 	new name2[24];
 	GetPlayerName(playerid, name1, sizeof(name1));
 	GetPlayerName(params[0], name2, sizeof(name2));
-	format(string, sizeof(string), "** %s(%d) le dio una advertencia a %s(%d) [%d/3] [Razón: %s]", name1, playerid, name2, params[0], ++Data[params[0]][Warning], params[1]);
+	format(string, sizeof(string), "** %s(%d) le dio una advertencia a %s(%d) [%d/3] [RazÃ³n: %s]", name1, playerid, name2, params[0], ++Data[params[0]][Warning], params[1]);
 	SendClientMessageToAll(Amarillo, string);
 	if(Data[params[0]][Warning] >= 3)
 	{
@@ -2950,15 +2950,15 @@ cmd:darequipo(playerid, params[])
 {
 	if(sscanf(params, "dd", params[0], params[1]))
 	{
-	    ShowPlayerDialog(playerid, 5, DIALOG_STYLE_MSGBOX, "Info - Comando", "{FFFFFF}ID Presidente = 1\nID VicePresidente = 2\nID Seguridad = 3\nID Policía = 4\nID SWAT = 5\nID Terrorista = 6\nID Civil = 7\n\n{FFFF00}Ejemplo de USO:\n{FFFFFF}/darequipo 2 1\n/darequipo 2 7", "Cerrar", "");
+	    ShowPlayerDialog(playerid, 5, DIALOG_STYLE_MSGBOX, "Info - Comando", "{FFFFFF}ID Presidente = 1\nID VicePresidente = 2\nID Seguridad = 3\nID PolicÃ­a = 4\nID SWAT = 5\nID Terrorista = 6\nID Civil = 7\n\n{FFFF00}Ejemplo de USO:\n{FFFFFF}/darequipo 2 1\n/darequipo 2 7", "Cerrar", "");
 		return SendClientMessage(playerid, Rojo, "USO: /darequipo [playerid] [teamid]");
 	}
 	if(!(IsPlayerConnected(params[0]) != 0))
 		return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador no se encuentra conectado.");
 	if(!(params[1] >= 1 && params[1] <= 7))
-		return SendClientMessage(playerid, Rojo, "ERROR: Ingresa una id válida (1/7).");
+		return SendClientMessage(playerid, Rojo, "ERROR: Ingresa una id vÃ¡lida (1/7).");
  	if(IsPlayerInClassSelection(params[0]) != 0)
-		return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador se encuentra en la selección de clases.");
+		return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador se encuentra en la selecciÃ³n de clases.");
 	if(!(Data[params[0]][Teams] != params[1]))
 		return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador ya se encuentra en ese equipo.");
     if(EstarEnDuelo[params[0]] == ESTA_EN_DUELO)
@@ -2968,9 +2968,9 @@ cmd:darequipo(playerid, params[])
 	if(EstarEnDuelo[params[0]] >= 0)
 		return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador se encuentra como espectador en un duelo.");
 	if(EstarEnDuelo[params[0]] == RETADOR_EN_ESPERA)
-	    return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador envío una invitación de un duelo a otro jugador.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador envÃ­o una invitaciÃ³n de un duelo a otro jugador.");
 	if(EstarEnDuelo[params[0]] == OPONENTE_EN_ESPERA)
-	    return SendClientMessage(playerid, Rojo, "ERROR: A ese jugador le enviaron una invitación para un duelo.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: A ese jugador le enviaron una invitaciÃ³n para un duelo.");
 	if((params[1] == PRESIDENT) && (id_president != INVALID_PLAYER_ID))
 		return SendClientMessage(playerid, Rojo, "ERROR: Ya hay un Presidente.");
  	if((params[1] == VICEPRESIDENT) && (id_vicepresident != INVALID_PLAYER_ID))
@@ -2992,7 +2992,7 @@ cmd:darequipo(playerid, params[])
 	Data[params[0]][Teams] = params[1];
 	//new const Skin[7] = {165, 147, 164, 280, 285, 223, 29};
 	SetPlayerSkinRandom(params[0], params[1]);
-	SetPlayerWorldBounds(params[0], 20000.0000, -20000.0000, 20000.0000, -20000.0000);//Borra el límite que hayas puesto antes
+	SetPlayerWorldBounds(params[0], 20000.0000, -20000.0000, 20000.0000, -20000.0000);//Borra el lÃ­mite que hayas puesto antes
 	//Data[params[0]][SkinClass] = Skin[Data[params[0]][Teams] - 1];
 	OnPlayerSpawn(params[0]);
 	if(playerid != params[0])
@@ -3002,7 +3002,7 @@ cmd:darequipo(playerid, params[])
 		new name2[24];
 		GetPlayerName(playerid, name1, sizeof(name1));
 		GetPlayerName(params[0], name2, sizeof(name2));
-		format(string, sizeof(string), "* %s cambió a %s como %s", name1, name2, GetTeamName(params[0]));
+		format(string, sizeof(string), "* %s cambiÃ³ a %s como %s", name1, name2, GetTeamName(params[0]));
 		SendClientMessageToAll(Amarillo, string);
 	}
 	return 1;
@@ -3023,7 +3023,7 @@ cmd:ir(playerid, params[])
  	if(IsPlayerRace(params[0]) == true)
         return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador se encuentra en una carrera actualmente.");
 	if(IsPlayerInClassSelection(params[0]) != 0)
-	    return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador se encuentra en la selección de clases.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador se encuentra en la selecciÃ³n de clases.");
 	new Float:X;
 	new Float:Y;
 	new Float:Z;
@@ -3035,7 +3035,7 @@ cmd:ir(playerid, params[])
 	SetPos(playerid, X, Y, Z, Angle, interior, world, GetPlayerVehicleID(playerid));
 	new name[24];
 	GetPlayerName(playerid, name, sizeof(name));
-	format(string,sizeof(string),"** %s(%d) fue hacia tu posición.", name, playerid);
+	format(string,sizeof(string),"** %s(%d) fue hacia tu posiciÃ³n.", name, playerid);
 	SendClientMessage(params[0], Amarillo, string);
 	return 1;
 }
@@ -3055,7 +3055,7 @@ cmd:traer(playerid,params[])
   	if(IsPlayerRace(params[0]) == true)
         return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador se encuentra en una carrera actualmente.");
  	if(IsPlayerInClassSelection(params[0]) != 0)
-	    return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador se encuentra en la selección de clases.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador se encuentra en la selecciÃ³n de clases.");
 	new Float:X;
 	new Float:Y;
 	new Float:Z;
@@ -3067,7 +3067,7 @@ cmd:traer(playerid,params[])
 	SetPos(params[0], X, Y, Z, Angle, interior, world, GetPlayerVehicleID(params[0]));
 	new name[24];
 	GetPlayerName(playerid, name, sizeof(name));
-	format(string, sizeof(string), "** %s(%d) te llevo hacia su posición.", name, playerid);
+	format(string, sizeof(string), "** %s(%d) te llevo hacia su posiciÃ³n.", name, playerid);
 	SendClientMessage(params[0], Amarillo, string);
 	return 1;
 }
@@ -3089,7 +3089,7 @@ cmd:espiar(playerid,params[],bool:value)
 		if(!(GetPlayerState(params[0]) != PLAYER_STATE_SPECTATING))
 			return SendClientMessage(playerid, Rojo ,"ERROR: Ese jugador se encuentra espiando a otra persona.");
 		if(!(IsPlayerInClassSelection(params[0]) != 1))
-			return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador se encuentra en la selección de clases.");
+			return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador se encuentra en la selecciÃ³n de clases.");
 		if(Data[playerid][ForcePlayer] == JUGADOR_SI_FORZADO)
 		{
 			Data[playerid][ForcePlayer] = JUGADOR_MUERTO_FORZADO;
@@ -3132,7 +3132,7 @@ cmd:cancion(playerid, params[])
 		return SendClientMessage(playerid, Rojo, "USO: /cancion [URL en .mp3]");
 	foreach(new i : Player)
 		PlayAudioStreamForPlayer(i, params);
-	SendClientMessageToAll(Amarillo, "* Para apagar la música usa /detener o /stop");
+	SendClientMessageToAll(Amarillo, "* Para apagar la mÃºsica usa /detener o /stop");
 	return 1;
 }
 
@@ -3170,17 +3170,17 @@ cmd:acmds(playerid)
 	new cmds_admin[1063];
 	strcat(cmds_admin, "Lista de comandos para los jugadores que sean administradores:\n\n");
 	strcat(cmds_admin, "* /acmds - Muestra una lista de comandos para jugadores que sean nivel 4\n");
-	strcat(cmds_admin, "* /anuncio2 - Envía un texto grande a todos los jugadores (estilo: 0)\n");
-	strcat(cmds_admin, "* /anuncio3 - Envía un texto grande a todos los jugadores (estilo: 1)\n");
+	strcat(cmds_admin, "* /anuncio2 - EnvÃ­a un texto grande a todos los jugadores (estilo: 0)\n");
+	strcat(cmds_admin, "* /anuncio3 - EnvÃ­a un texto grande a todos los jugadores (estilo: 1)\n");
 	strcat(cmds_admin, "* /darnivel - Proporciona un nivel al jugador, ya sea vip, mod o admin\n");
 	strcat(cmds_admin, "* /prohibir - Expulsa permanentemente a un jugador del servidor\n");
- 	strcat(cmds_admin, "* /rprohibir - Prohíbe un cierto rango de una ip de un específico jugador\n");
+ 	strcat(cmds_admin, "* /rprohibir - ProhÃ­be un cierto rango de una ip de un especÃ­fico jugador\n");
 	strcat(cmds_admin, "* /desprohibir - Le quita el ban producido por el /prohibir\n");
 	strcat(cmds_admin, "* /godmode - Activa/Desactiva el modo dios (vida infinita)\n");
 	strcat(cmds_admin, "* /decir - Muestra un mensaje en rosado. Ejemplo: /decir MrDave es un novato;\n");
-	strcat(cmds_admin, "  Usted verá en el chat: [Administrador] * Quido: MrDave es un novato\n\n");
-	strcat(cmds_admin, "* /fakechat - Envía un mensaje falso de un jugador\n");
-	strcat(cmds_admin, "* /nsay - Muestra un mensaje anónimo (sin especificar el nombre del admin)\n");
+	strcat(cmds_admin, "  Usted verÃ¡ en el chat: [Administrador] * Quido: MrDave es un novato\n\n");
+	strcat(cmds_admin, "* /fakechat - EnvÃ­a un mensaje falso de un jugador\n");
+	strcat(cmds_admin, "* /nsay - Muestra un mensaje anÃ³nimo (sin especificar el nombre del admin)\n");
 	strcat(cmds_admin, "* /antibot - Desactiva/Activa el sistema de Anti-Bot\n");
 	strcat(cmds_admin, "* /nombreon - Activa/Desactiva el comando /nombre\n\n");
 	strcat(cmds_admin, "Con #[texto] hablas por el chat admin. Ejemplo: #Hola");
@@ -3210,7 +3210,7 @@ cmd:nombreon(playerid, params[])
 	new name[24];
 	CommandName = !CommandName;
 	GetPlayerName(playerid, name, sizeof(name));
-	format(string, sizeof(string), "** %s(%d) %s el comando /nombre para todos los jugadores.", name, playerid, ((CommandName == false) ? ("desactivó") : ("activó")));
+	format(string, sizeof(string), "** %s(%d) %s el comando /nombre para todos los jugadores.", name, playerid, ((CommandName == false) ? ("desactivÃ³") : ("activÃ³")));
 	SendClientMessageToAll(Amarillo, string);
 	PlayerPlaySound(playerid, 1139, 0, 0, 0);
 	return 1;
@@ -3223,11 +3223,11 @@ cmd:darnivel(playerid, params[])
 	if(!(IsPlayerConnected(params[0]) != 0))
 		return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador no se encuentra conectado.");
 	if(!(params[1] >= 1 && params[1] <= 4))
-		return SendClientMessage(playerid, Rojo, "ERROR: Ingresa una id válida (1/4).");
+		return SendClientMessage(playerid, Rojo, "ERROR: Ingresa una id vÃ¡lida (1/4).");
 	if(!(Data[params[0]][Level] != params[1]))
 		return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador ya tiene ese nivel.");
  	if((params[0] != playerid) && (Data[params[0]][Level] == 5))
-	    return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador es el dueño del servidor.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador es el dueÃ±o del servidor.");
 	GameTextForPlayer(params[0], ((!(Data[params[0]][Level] > params[1])) ? ("NIVEL PROMOVIDO") : ("NIVEL DEGRADADO")), 4000, 3);
 	Data[params[0]][Level] = params[1];
 	WriteData(params[0], LEVEL);
@@ -3251,7 +3251,7 @@ cmd:prohibir(playerid, params[])
 	if(sscanf(params, "ds", params[0], params[1]))
 		return SendClientMessage(playerid, Rojo, "USO: /prohibir [playerid] [reason]");
 	if(IsPlayerConnected(params[0]) != 1)
-	    return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador no está conectado.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador no estÃ¡ conectado.");
 	if(params[0] == playerid)
 		return SendClientMessage(playerid, Rojo, "ERROR: Usted no se puede autoprohibir.");
  	if(Data[params[0]][Level] == 3)
@@ -3259,14 +3259,14 @@ cmd:prohibir(playerid, params[])
 	if(Data[params[0]][Level] == 4)
 	    return SendClientMessage(playerid, Rojo, "ERROR: No puedes prohibir a un administrador.");
 	if(Data[params[0]][Level] == 5)
-	    return SendClientMessage(playerid, Rojo, "ERROR: No puedes prohibir a un dueño.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: No puedes prohibir a un dueÃ±o.");
     Kicked = false;
 	new string[32+(3*24)];
 	new name1[24];
 	new name2[24];
 	GetPlayerName(playerid, name1, sizeof(name1));
 	GetPlayerName(params[0], name2, sizeof(name2));
-	format(string, sizeof(string), "%s prohibió a %s del servidor [Razón: %s]", name1, name2, params[1]);
+	format(string, sizeof(string), "%s prohibiÃ³ a %s del servidor [RazÃ³n: %s]", name1, name2, params[1]);
 	SendClientMessageToAll(Rojo, string);
 	SendMessage(params[0], params[1]);
 	return 1;
@@ -3277,7 +3277,7 @@ cmd:rprohibir(playerid, params[])
     if(sscanf(params, "ds", params[0], params[1]))
 		return SendClientMessage(playerid, Rojo, "USO: /rprohibir [playerid] [reason]");
 	if(IsPlayerConnected(params[0]) != 1)
-	    return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador no está conectado.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: Ese jugador no estÃ¡ conectado.");
 	if(params[0] == playerid)
 		return SendClientMessage(playerid, Rojo, "ERROR: Usted no se puede autoprohibir.");
  	if(Data[params[0]][Level] == 3)
@@ -3285,7 +3285,7 @@ cmd:rprohibir(playerid, params[])
 	if(Data[params[0]][Level] == 4)
 	    return SendClientMessage(playerid, Rojo, "ERROR: No puedes prohibir el rango de una IP a un administrador.");
 	if(Data[params[0]][Level] == 5)
-	    return SendClientMessage(playerid, Rojo, "ERROR: No puedes prohibir el rango de una IP a un dueño.");
+	    return SendClientMessage(playerid, Rojo, "ERROR: No puedes prohibir el rango de una IP a un dueÃ±o.");
 	new string[40+24+24+35];
 	new ip[16];
 	new name1[24];
@@ -3315,7 +3315,7 @@ cmd:rprohibir(playerid, params[])
        }
 	}
 	for(i = 0, ContarPuntos = 0; i < len; ++i)
-	//Este ciclo cambiará la IP de esta manera: 127.0.*.*
+	//Este ciclo cambiarÃ¡ la IP de esta manera: 127.0.*.*
 	{
 		if(ip[i] == '.')
 		{
@@ -3345,7 +3345,7 @@ cmd:rprohibir(playerid, params[])
 		    }
 		}
 	}
-	format(string, sizeof(string), "%s prohibió un cierto rango IP de %s [Razón: %s]", name1, name2, params[1]);
+	format(string, sizeof(string), "%s prohibiÃ³ un cierto rango IP de %s [RazÃ³n: %s]", name1, name2, params[1]);
 	SendClientMessageToAll(Rojo, string);
 	format(str_ban, sizeof(str_ban), "banip %s", ip);
 	//printf("DEBUG: IP: %s", ip);
@@ -3358,14 +3358,14 @@ cmd:desprohibir(playerid, params[])
 	if(!(params[0] != '\0'))
 		return SendClientMessage(playerid, Rojo, "USO: /desprohibir [IP]");
 	if(strlen(params) < 5 || strlen(params) > 16)
-		return SendClientMessage(playerid, Rojo, "ERROR: La ip está demasiada corta o larga (mínimo: 5 caracteres - máximo: 16).");
+		return SendClientMessage(playerid, Rojo, "ERROR: La ip estÃ¡ demasiada corta o larga (mÃ­nimo: 5 caracteres - mÃ¡ximo: 16).");
 	new string[25];
 	new str[70];
 	new name[24];
 	GetPlayerName(playerid, name, sizeof(name));
 	format(string, sizeof(string), "unbanip %s", params);
 	SendRconCommand(string);
-	format(str, sizeof(str), "** %s(%d) desprohibió esta IP: %s", name, playerid, params);
+	format(str, sizeof(str), "** %s(%d) desprohibiÃ³ esta IP: %s", name, playerid, params);
 	SendClientMessageToAll(Amarillo, str);
 	return 1;
 }
@@ -3396,7 +3396,7 @@ cmd:nsay(playerid, params[])
 	if(isnull(params))
 		return SendClientMessage(playerid,Rojo,"USO: /nsay [mensaje]");
 	new string[128];
-	format(string, sizeof(string), "{FF9900}.:: Admin Anónimo: {FFFFFF}| %s",params);
+	format(string, sizeof(string), "{FF9900}.:: Admin AnÃ³nimo: {FFFFFF}| %s",params);
 	SendClientMessageToAll(-1, string);
 	return 1;
 }
