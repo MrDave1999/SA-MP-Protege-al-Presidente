@@ -23,7 +23,7 @@ Para descargar todo el `gamemode` debes ir a la sección [Release](https://githu
 - [MrDave](https://github.com/MrDave1999) 
 - [Y_Less](https://github.com/Y-Less) (sscanf, YSI)
 - [urShadow](https://github.com/urShadow/Pawn.CMD) (Pawn.CMD)
-- [Kye](https://forum.sa-mp.com/showthread.php?t=608474) (mSelection)
+- [Kye](https://forum.sa-mp.com/showthread.php?t=407045) (mSelection)
 - [Gryphus One](https://forum.sa-mp.com/showthread.php?t=380686) (OnPlayerPause)
 - [Cueball](https://forum.sa-mp.com/showthread.php?t=27598) (a_zones)
 - SA-MP Team
