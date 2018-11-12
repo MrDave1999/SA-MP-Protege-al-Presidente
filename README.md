@@ -18,6 +18,11 @@ Los civiles es una clase adicional, pues ellos pueden proteger como matar al pre
 
 Para descargar todo el `gamemode` debes ir a la sección [Release](https://github.com/MrDave1999/SA-MP-Protege-al-Presidente/releases) y ahí verás el directorio comprimido.
 
+## Imágenes
+
+[![PAP](https://i.imgur.com/obVkGyL.png)](https://github.com/MrDave1999)
+[![PAP](https://i.imgur.com/teVjbDs.png)](https://github.com/MrDave1999)
+
 ## Créditos
 
 - [MrDave](https://github.com/MrDave1999) 
